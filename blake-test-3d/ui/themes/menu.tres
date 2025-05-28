@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://d2ljv58wchtxi"]
+
+[ext_resource type="FontFile" uid="uid://xkl4rk4jgyoi" path="res://assets/fonts/Montserrat-Medium.ttf" id="1_p36by"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dunes"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p36by"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kviua"]
+bg_color = Color(0.741385, 0.741385, 0.741385, 1)
+
+[resource]
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_p36by")
+CheckBox/constants/outline_size = 10
+CheckBox/font_sizes/font_size = 30
+CheckBox/fonts/font = ExtResource("1_p36by")
+EnemyHealthBar/base_type = &"ProgressBar"
+EnemyHealthBar/styles/background = null
+EnemyHealthBar/styles/fill = SubResource("StyleBoxFlat_dunes")
+Label/constants/outline_size = 5
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_p36by")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_p36by")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_kviua")

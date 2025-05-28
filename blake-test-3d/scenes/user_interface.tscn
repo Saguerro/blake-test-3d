@@ -1,0 +1,589 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnh1ieg1ll1tl"]
+
+[ext_resource type="Script" uid="uid://dmbecrg6s8sj1" path="res://scripts/user_interface.gd" id="1_cufge"]
+[ext_resource type="Theme" uid="uid://d2ljv58wchtxi" path="res://ui/themes/menu.tres" id="2_lmgon"]
+[ext_resource type="Script" uid="uid://cd0x7igtgrt6a" path="res://scripts/volume_slider.gd" id="3_xsrv6"]
+[ext_resource type="Script" uid="uid://cm45bms8ib7pw" path="res://scripts/sensitivity_slider.gd" id="4_sdud1"]
+[ext_resource type="AudioStream" uid="uid://dh4wtb8i6ba4n" path="res://assets/sounds/button.mp3" id="5_aisij"]
+
+[node name="user_interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cufge")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainMenu" type="Control" parent="Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="main_title" type="Label" parent="Menu/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.107
+anchor_right = 0.5
+anchor_bottom = 0.107
+offset_left = -352.0
+offset_top = -55.56
+offset_right = 352.0
+offset_bottom = 55.44
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 90
+text = "Blake Game 3D"
+
+[node name="subtitle" type="Label" parent="Menu/MainMenu/main_title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.459
+anchor_right = 0.5
+anchor_bottom = 1.459
+offset_left = -20.0
+offset_top = -18.949
+offset_right = 20.0
+offset_bottom = 4.05099
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+text = "Now with levels!"
+
+[node name="menu_buttons" type="Control" parent="Menu/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="level_select_button" type="Button" parent="Menu/MainMenu/menu_buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.389
+anchor_right = 0.5
+anchor_bottom = 0.389
+offset_left = -4.0
+offset_top = -4.12003
+offset_right = 4.0
+offset_bottom = 3.87997
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+text = "Level Select"
+
+[node name="settings_button" type="Button" parent="Menu/MainMenu/menu_buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+text = "Settings"
+
+[node name="controls_button" type="Button" parent="Menu/MainMenu/menu_buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.611
+anchor_right = 0.5
+anchor_bottom = 0.611
+offset_left = -130.0
+offset_top = -41.38
+offset_right = 130.0
+offset_bottom = 41.62
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+text = "Controls"
+
+[node name="quit_button" type="Button" parent="Menu/MainMenu/menu_buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.85
+offset_left = -70.0
+offset_top = -41.0
+offset_right = 71.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Quit"
+
+[node name="SettingsMenu" type="Control" parent="Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settings_back_button" type="Button" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.877
+anchor_right = 0.5
+anchor_bottom = 0.877
+offset_left = -80.0
+offset_top = -41.16
+offset_right = 80.0
+offset_bottom = 41.84
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Back"
+
+[node name="settings_save_button" type="Button" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.785
+anchor_right = 0.5
+anchor_bottom = 0.785
+offset_left = -80.0
+offset_top = -41.8
+offset_right = 80.0
+offset_bottom = 41.2
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Save
+"
+
+[node name="settings_pause_back_button" type="Button" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.877
+anchor_right = 0.5
+anchor_bottom = 0.877
+offset_left = -80.0
+offset_top = -41.16
+offset_right = 80.0
+offset_bottom = 41.84
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Back"
+
+[node name="settings_title" type="Label" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.107
+anchor_right = 0.5
+anchor_bottom = 0.107
+offset_left = -352.0
+offset_top = -55.56
+offset_right = 352.0
+offset_bottom = 55.44
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 90
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="alt_sounds_toggle" type="CheckBox" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.447
+anchor_right = 0.5
+anchor_bottom = 0.447
+offset_left = -142.0
+offset_top = -28.76
+offset_right = 142.0
+offset_bottom = 29.24
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+theme_override_font_sizes/font_size = 40
+text = "Voice Acting
+"
+
+[node name="resolution_menu" type="OptionButton" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.324
+anchor_right = 0.5
+anchor_bottom = 0.324
+offset_left = -291.0
+offset_top = -41.92
+offset_right = 292.0
+offset_bottom = 41.08
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+selected = 0
+item_count = 5
+popup/item_0/text = "Resolution"
+popup/item_0/id = 0
+popup/item_1/text = "2560x1440"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+popup/item_3/text = "1280x720 (broken)"
+popup/item_3/id = 3
+popup/item_4/text = "3440x1440"
+popup/item_4/id = 4
+
+[node name="VolumeSlider" type="HSlider" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.568
+anchor_right = 0.5
+anchor_bottom = 0.568
+offset_left = -215.0
+offset_top = -16.44
+offset_right = 215.0
+offset_bottom = 16.56
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+ticks_on_borders = true
+script = ExtResource("3_xsrv6")
+
+[node name="volume_slider_label" type="Label" parent="Menu/SettingsMenu/VolumeSlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = -0.5
+offset_left = -59.0
+offset_top = -19.0
+offset_right = 59.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 9
+text = "Volume"
+
+[node name="SensitivitySlider" type="HSlider" parent="Menu/SettingsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.661
+anchor_right = 0.5
+anchor_bottom = 0.661
+offset_left = -215.0
+offset_top = -16.88
+offset_right = 215.0
+offset_bottom = 16.12
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 2.0
+step = 0.05
+value = 0.5
+ticks_on_borders = true
+script = ExtResource("4_sdud1")
+
+[node name="sensitivity_slider_label" type="Label" parent="Menu/SettingsMenu/SensitivitySlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = -0.5
+offset_left = -59.0
+offset_top = -19.0
+offset_right = 59.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 9
+
+[node name="PauseMenu" type="Control" parent="Menu"]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause_settings_button" type="Button" parent="Menu/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+text = "Settings"
+
+[node name="back_to_game" type="Button" parent="Menu/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.389
+anchor_right = 0.5
+anchor_bottom = 0.389
+offset_left = -130.0
+offset_top = -41.62
+offset_right = 130.0
+offset_bottom = 41.38
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+text = "Back To Game"
+
+[node name="pause_quit_button" type="Button" parent="Menu/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.85
+offset_left = -70.0
+offset_top = -41.0
+offset_right = 71.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Quit To Menu"
+
+[node name="paused_title" type="Label" parent="Menu/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.107
+anchor_right = 0.5
+anchor_bottom = 0.107
+offset_left = -352.0
+offset_top = -55.56
+offset_right = 352.0
+offset_bottom = 55.44
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 90
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="LevelSelect" type="Control" parent="Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="level_title" type="Label" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.107
+anchor_right = 0.5
+anchor_bottom = 0.107
+offset_left = -422.0
+offset_top = -55.56
+offset_right = 423.0
+offset_bottom = 55.44
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 90
+text = "Where you going?"
+
+[node name="base_level_button" type="Button" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -41.0
+offset_right = 180.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+text = "Base Level"
+
+[node name="test_plane_button" type="Button" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.611
+anchor_right = 0.5
+anchor_bottom = 0.611
+offset_left = -180.0
+offset_top = -41.38
+offset_right = 180.0
+offset_bottom = 41.62
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+text = "Test Plane
+"
+
+[node name="blake_test_3d_button" type="Button" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.389
+anchor_right = 0.5
+anchor_bottom = 0.389
+offset_left = -180.0
+offset_top = -41.62
+offset_right = 180.0
+offset_bottom = 41.38
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+text = "Blake Test 3D
+"
+
+[node name="level_select_back_button" type="Button" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.85
+offset_left = -80.0
+offset_top = -41.0
+offset_right = 80.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Back"
+
+[node name="ControlsMenu" type="Control" parent="Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="controls_back_button" type="Button" parent="Menu/ControlsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.85
+offset_left = -80.0
+offset_top = -41.0
+offset_right = 80.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_lmgon")
+text = "Back"
+
+[node name="level_title" type="Label" parent="Menu/ControlsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.107
+anchor_right = 0.5
+anchor_bottom = 0.107
+offset_left = -422.0
+offset_top = -55.56
+offset_right = 423.0
+offset_bottom = 55.44
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 90
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="controls_list" type="Label" parent="Menu/ControlsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.477
+anchor_right = 0.5
+anchor_bottom = 0.477
+offset_left = -130.0
+offset_top = -290.16
+offset_right = 130.0
+offset_bottom = 289.84
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lmgon")
+theme_override_font_sizes/font_size = 40
+text = "Forward: W     Run: Shift
+Back: S             Crouch: C
+Left:  A              Jump: Space
+Right: D           Freelook: Alt
+
+Restart: L
+Reload: R
+Grab/Interact: E
+Rotate: Middle Mouse
+Throw: Right Click"
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aisij")
+volume_db = 5.0
+
+[connection signal="pressed" from="Menu/MainMenu/menu_buttons/level_select_button" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/menu_buttons/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/menu_buttons/controls_button" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="Menu/MainMenu/menu_buttons/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Menu/SettingsMenu/settings_back_button" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="Menu/SettingsMenu/settings_save_button" to="." method="_on_settings_save_button_pressed"]
+[connection signal="pressed" from="Menu/SettingsMenu/settings_pause_back_button" to="." method="_on_settings_pause_back_button_pressed"]
+[connection signal="toggled" from="Menu/SettingsMenu/alt_sounds_toggle" to="." method="_on_alt_sounds_toggle_toggled"]
+[connection signal="item_selected" from="Menu/SettingsMenu/resolution_menu" to="." method="_on_resolution_menu_item_selected"]
+[connection signal="value_changed" from="Menu/SettingsMenu/VolumeSlider" to="Menu/SettingsMenu/VolumeSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Menu/SettingsMenu/SensitivitySlider" to="Menu/SettingsMenu/SensitivitySlider" method="_on_value_changed"]
+[connection signal="pressed" from="Menu/PauseMenu/pause_settings_button" to="." method="_on_pause_settings_button_pressed"]
+[connection signal="pressed" from="Menu/PauseMenu/back_to_game" to="." method="_on_back_to_game_pressed"]
+[connection signal="pressed" from="Menu/PauseMenu/pause_quit_button" to="." method="_on_pause_quit_button_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect/base_level_button" to="." method="_on_base_level_button_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect/test_plane_button" to="." method="_on_test_plane_button_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect/blake_test_3d_button" to="." method="_on_blake_test_3d_button_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect/level_select_back_button" to="." method="_on_level_select_back_button_pressed"]
+[connection signal="pressed" from="Menu/ControlsMenu/controls_back_button" to="." method="_on_controls_back_button_pressed"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw0h7v4byurs4"]
+
+[ext_resource type="Script" uid="uid://by62frwvhx6v1" path="res://scenes/detector_platform_horizontal.gd" id="1_bpv5p"]
+[ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="2_xhc7i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6gvq"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b63vo"]
+albedo_texture = ExtResource("2_xhc7i")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_xmdr2"]
+material = SubResource("StandardMaterial3D_b63vo")
+size = Vector3(2, 0.25, 2)
+
+[node name="detector_platform_horizontal" type="Node3D"]
+script = ExtResource("1_bpv5p")
+
+[node name="platform" type="AnimatableBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape3D_a6gvq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_xmdr2")
+
+[node name="Area3D" type="Area3D" parent="platform"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_a6gvq")
+
+[connection signal="body_entered" from="platform/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="platform/Area3D" to="." method="_on_area_3d_body_exited"]

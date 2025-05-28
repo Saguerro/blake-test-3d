@@ -1,0 +1,137 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhnedki8hvn28"]
+
+[ext_resource type="Script" uid="uid://rg7ums0slqoe" path="res://scripts/small_door_fragile.gd" id="1_ayktf"]
+[ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_rvpnd"]
+[ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="3_ek2j1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4w51"]
+albedo_texture = ExtResource("2_rvpnd")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ccfpm"]
+material = SubResource("StandardMaterial3D_l4w51")
+size = Vector3(0.25, 2.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y34m"]
+albedo_texture = ExtResource("2_rvpnd")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vvkw4"]
+material = SubResource("StandardMaterial3D_6y34m")
+size = Vector3(2, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a34ul"]
+size = Vector3(1.5, 2.25, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s08m1"]
+albedo_texture = ExtResource("3_ek2j1")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_hnjt7"]
+material = SubResource("StandardMaterial3D_s08m1")
+size = Vector3(1.5, 2.25, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayktf"]
+size = Vector3(1.5, 2.25, 0.25)
+
+[node name="small_door_fragile" type="Node3D"]
+script = ExtResource("1_ayktf")
+
+[node name="door_frame" type="StaticBody3D" parent="."]
+
+[node name="frame_left" type="MeshInstance3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, 1.125, -0.125)
+mesh = SubResource("BoxMesh_ccfpm")
+skeleton = NodePath("")
+
+[node name="frame_right" type="MeshInstance3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.875, 1.125, -0.125)
+mesh = SubResource("BoxMesh_ccfpm")
+skeleton = NodePath("")
+
+[node name="frame_top" type="MeshInstance3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.375, -0.125)
+mesh = SubResource("BoxMesh_vvkw4")
+skeleton = NodePath("")
+
+[node name="frame_collision" type="CollisionPolygon3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.125)
+depth = 0.25
+polygon = PackedVector2Array(-1, -1, -1, 1.5, 1, 1.5, 1, -1, 0.75, -1, 0.75, 1.25, -0.75, 1.25, -0.75, -1)
+
+[node name="door_pieces" type="Node3D" parent="."]
+
+[node name="door_bottom_left" type="RigidBody3D" parent="door_pieces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0.565, -0.125)
+collision_layer = 128
+collision_mask = 129
+mass = 5.0
+freeze = true
+
+[node name="animated_collision" type="CollisionShape3D" parent="door_pieces/door_bottom_left"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_a34ul")
+
+[node name="animated_mesh" type="MeshInstance3D" parent="door_pieces/door_bottom_left"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_hnjt7")
+skeleton = NodePath("")
+
+[node name="door_bottom_right" type="RigidBody3D" parent="door_pieces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0.565, -0.125)
+collision_layer = 128
+collision_mask = 129
+mass = 5.0
+freeze = true
+
+[node name="animated_collision" type="CollisionShape3D" parent="door_pieces/door_bottom_right"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_a34ul")
+
+[node name="animated_mesh" type="MeshInstance3D" parent="door_pieces/door_bottom_right"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_hnjt7")
+skeleton = NodePath("")
+
+[node name="door_top_right" type="RigidBody3D" parent="door_pieces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 1.695, -0.125)
+collision_layer = 128
+collision_mask = 129
+mass = 5.0
+freeze = true
+
+[node name="animated_collision" type="CollisionShape3D" parent="door_pieces/door_top_right"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_a34ul")
+
+[node name="animated_mesh" type="MeshInstance3D" parent="door_pieces/door_top_right"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.00801778, 0)
+mesh = SubResource("BoxMesh_hnjt7")
+skeleton = NodePath("")
+
+[node name="door_top_left" type="RigidBody3D" parent="door_pieces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 1.695, -0.125)
+collision_layer = 128
+collision_mask = 129
+mass = 5.0
+freeze = true
+
+[node name="animated_collision" type="CollisionShape3D" parent="door_pieces/door_top_left"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_a34ul")
+
+[node name="animated_mesh" type="MeshInstance3D" parent="door_pieces/door_top_left"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0076704, 0)
+mesh = SubResource("BoxMesh_hnjt7")
+skeleton = NodePath("")
+
+[node name="player_detector" type="Area3D" parent="."]
+
+[node name="detector_collision" type="CollisionShape3D" parent="player_detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+shape = SubResource("BoxShape3D_ayktf")
+
+[node name="hit_direction" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.341842)
+
+[connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]

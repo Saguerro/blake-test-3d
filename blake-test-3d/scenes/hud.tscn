@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://chfg8k2bn4v1b"]
+
+[ext_resource type="FontFile" uid="uid://xkl4rk4jgyoi" path="res://assets/fonts/Montserrat-Medium.ttf" id="1_ahhtf"]
+
+[node name="HUD" type="Control"]
+z_index = -5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TrialTimer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 80.0
+
+[node name="CurrentTime" type="Label" parent="TrialTimer"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 30
+text = "Time:"
+
+[node name="BestTime" type="Label" parent="TrialTimer"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 30
+text = "Best Time: "
+
+[node name="IntroText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ahhtf")
+theme_override_font_sizes/font_size = 60
+text = "Blake Test 3D"

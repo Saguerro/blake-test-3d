@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgb8wc6005gme"]
+
+[ext_resource type="Script" uid="uid://cm2kq563652lw" path="res://scenes/triggered_platform_vertical.gd" id="1_tfp8h"]
+[ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="2_3x0oh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6gvq"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b63vo"]
+albedo_texture = ExtResource("2_3x0oh")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_xmdr2"]
+material = SubResource("StandardMaterial3D_b63vo")
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nkmct"]
+points = PackedVector3Array(1, 0.25, 1, 1.25, 0, 1.25, -1, 0.25, 1, -1.25, 0, 1.25, -1, 0.25, -1, -1.25, 0, -1.25, 1, 0.25, -1, 1.25, 0, -1.25)
+
+[node name="triggered_platform_vertical" type="Node3D"]
+script = ExtResource("1_tfp8h")
+
+[node name="platform" type="AnimatableBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape3D_a6gvq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_xmdr2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="platform"]
+shape = SubResource("ConvexPolygonShape3D_nkmct")

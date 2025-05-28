@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://d37218v0y1o2a"]
+
+[ext_resource type="ArrayMesh" uid="uid://vne3trobssj4" path="res://meshes/weapons/crowbar/mesh_crowbar.res" id="1_xasec"]
+
+[sub_resource type="GDScript" id="GDScript_xasec"]
+script/source = "@tool
+
+extends Node3D
+
+@export var WEAPON_TYPE : Weapons:
+	set(value):
+		WEAPON_TYPE = value
+		if Engine.is_editor_hint():
+			load_weapon()
+
+# We use normal variables to store the nodes
+var weapon_mesh : MeshInstance3D = null
+var weapon_shadow : MeshInstance3D = null
+
+func _ready() -> void:
+	# Initialize nodes and load the weapon
+	_initialize_nodes()
+	load_weapon()
+
+# Find nodes manually
+func _initialize_nodes() -> void:
+	if not weapon_mesh:
+		weapon_mesh = get_node_or_null(\"WeaponMesh\")
+	if not weapon_shadow:
+		weapon_shadow = get_node_or_null(\"WeaponShadow\")
+
+func load_weapon() -> void:
+	_initialize_nodes() # Ensures that nodes are ready
+
+	if WEAPON_TYPE and weapon_mesh and weapon_shadow:
+		weapon_mesh.mesh = WEAPON_TYPE.mesh
+		position = WEAPON_TYPE.position
+		rotation_degrees = WEAPON_TYPE.rotation
+		weapon_shadow.visible = WEAPON_TYPE.shadow
+		scale = WEAPON_TYPE.scale
+"
+
+[sub_resource type="Skin" id="Skin_uxn4k"]
+
+[node name="Weapon" type="Node3D"]
+script = SubResource("GDScript_xasec")
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, 0, 0, 0)
+mesh = ExtResource("1_xasec")
+skin = SubResource("Skin_uxn4k")
+
+[node name="WeaponShadow" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true

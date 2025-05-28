@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://bl7d14kv137kt"]
+
+[ext_resource type="Script" uid="uid://chcdoxjtp6tl1" path="res://enemy.gd" id="1_7p1mj"]
+[ext_resource type="Theme" uid="uid://d2ljv58wchtxi" path="res://ui/themes/menu.tres" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://cnp01btkkm1ml" path="res://assets/textures/face.png" id="3_4ra3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7p1mj"]
+albedo_color = Color(0.823529, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_md0e3"]
+material = SubResource("StandardMaterial3D_7p1mj")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ra3w"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
+viewport_path = NodePath("health_bar/SubViewport")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ra3w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uy6h"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_md0e3"]
+bottom_radius = 1.5
+radial_segments = 16
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ra3w"]
+points = PackedVector3Array(0, -1, -1.5, -0.574099, -1, -1.38606, -0.191464, 1, -0.462216, 0, 1, -0.500098, 0.191171, 1, -0.462216, 0.573806, -1, -1.38606, -1.06069, -1, -1.06069, -0.91944, -0.600039, -0.91944, -0.636648, 0.199883, -0.636648, -0.353563, 1, -0.353563, 0.353269, 1, -0.353563, 0.636355, 0.199883, -0.636648, 0.919147, -0.600039, -0.91944, 1.0604, -1, -1.06069, -1.38606, -1, -0.574099, -0.462216, 1, -0.191464, 0.461923, 1, -0.191464, 1.38577, -1, -0.574099, -1.5, -1, 0, -0.500098, 1, 0, 0.499804, 1, 0, 1.5, -1, 0, -1.38606, -1, 0.573806, -0.462216, 1, 0.191171, 0.461923, 1, 0.191171, 1.38577, -1, 0.573806, -1.06069, -1, 1.0604, -0.91944, -0.600039, 0.919147, -0.636648, 0.199883, 0.636355, -0.353563, 1, 0.353269, 0.353269, 1, 0.353269, 0.636355, 0.199883, 0.636355, 0.919147, -0.600039, 0.919147, 1.0604, -1, 1.0604, -0.574099, -1, 1.38577, -0.191464, 1, 0.461923, 0.191171, 1, 0.461923, 0.573806, -1, 1.38577, 0, -1, 1.5, 0, 1, 0.499804)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ra3w"]
+size = Vector3(0.5, 0.5, 0.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5uy6h"]
+size = Vector3(0.5, 0.5, 0.75)
+
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_7p1mj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_md0e3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_4ra3w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.5
+
+[node name="health_bar" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.25, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_4ra3w")
+
+[node name="SubViewport" type="SubViewport" parent="health_bar"]
+size = Vector2i(186, 27)
+
+[node name="ProgressBar" type="ProgressBar" parent="health_bar/SubViewport"]
+offset_right = 186.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_md0e3")
+theme_override_styles/background = SubResource("StyleBoxEmpty_4ra3w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5uy6h")
+value = 100.0
+show_percentage = false
+
+[node name="vision_cone" type="Area3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="vision_cone"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 1.47158, -9.78391)
+visible = false
+mesh = SubResource("CylinderMesh_md0e3")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vision_cone"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 1.47158, -9.78391)
+shape = SubResource("ConvexPolygonShape3D_4ra3w")
+
+[node name="vision_timer" type="Timer" parent="vision_cone"]
+wait_time = 0.25
+autostart = true
+
+[node name="aggro_timer" type="Timer" parent="vision_cone"]
+wait_time = 3.0
+
+[node name="vision_raycast" type="RayCast3D" parent="vision_cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, -100)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.13, 0, 0, 0, 0.13, 0, 0, 0, 0.13, 0, 1.54182, -0.5)
+texture = ExtResource("3_4ra3w")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="attack_timer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="attack_cooldown_timer" type="Timer" parent="Timers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="attack" type="Node3D" parent="."]
+
+[node name="attack_hitbox" type="Area3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack/attack_hitbox"]
+shape = SubResource("BoxShape3D_4ra3w")
+
+[node name="attack_mesh" type="MeshInstance3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("BoxMesh_5uy6h")
+
+[connection signal="timeout" from="vision_cone/vision_timer" to="." method="_on_vision_timer_timeout"]
+[connection signal="timeout" from="vision_cone/aggro_timer" to="." method="_on_aggro_timer_timeout"]
+[connection signal="timeout" from="Timers/attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/attack_cooldown_timer" to="." method="_on_attack_cooldown_timer_timeout"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://7jofi7k8qlf4"]
+
+[ext_resource type="PackedScene" uid="uid://cwquk0w8xyct6" path="res://scenes/2d_menu_background.tscn" id="2_7js8a"]
+[ext_resource type="PackedScene" uid="uid://bnh1ieg1ll1tl" path="res://scenes/user_interface.tscn" id="3_0gqq8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0gqq8"]
+viewport_path = NodePath("SubViewport")
+
+[node name="menu_background" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
+
+[node name="Node2D" parent="SubViewport" instance=ExtResource("2_7js8a")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("ViewportTexture_0gqq8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.21856)
+fov = 154.0
+
+[node name="user_interface" parent="." instance=ExtResource("3_0gqq8")]

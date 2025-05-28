@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d14fsgx6455s6"]
+
+[ext_resource type="Script" uid="uid://lt5icq7vtcth" path="res://weapon_manager/weapon_manager.gd" id="1_hx5ju"]
+[ext_resource type="PackedScene" uid="uid://5pe71uut1g8o" path="res://scenes/MuzzleFlash.tscn" id="2_fys77"]
+
+[node name="weapon_manager" type="Node3D"]
+script = ExtResource("1_hx5ju")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="ViewMuzzleFlash" parent="." instance=ExtResource("2_fys77")]

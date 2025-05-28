@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqn4tv8qw3nmu"]
+
+[ext_resource type="Script" uid="uid://bn0p860e7wt7n" path="res://scripts/small_button_door_down.gd" id="1_tk1w7"]
+[ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_7llgv"]
+[ext_resource type="Script" uid="uid://bo3wtodrkwm3w" path="res://scripts/button_door_interactable.gd" id="3_7llgv"]
+[ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="3_h5xj5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4w51"]
+albedo_texture = ExtResource("2_7llgv")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ccfpm"]
+material = SubResource("StandardMaterial3D_l4w51")
+size = Vector3(0.25, 2.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y34m"]
+albedo_texture = ExtResource("2_7llgv")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vvkw4"]
+material = SubResource("StandardMaterial3D_6y34m")
+size = Vector3(2, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a34ul"]
+size = Vector3(1.5, 2.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s08m1"]
+albedo_texture = ExtResource("3_h5xj5")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_hnjt7"]
+material = SubResource("StandardMaterial3D_s08m1")
+size = Vector3(1.5, 2.25, 0.25)
+
+[node name="small_door_down" type="Node3D"]
+script = ExtResource("1_tk1w7")
+
+[node name="door_frame" type="StaticBody3D" parent="."]
+
+[node name="frame_left" type="MeshInstance3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, 1.125, -0.125)
+mesh = SubResource("BoxMesh_ccfpm")
+skeleton = NodePath("")
+
+[node name="frame_right" type="MeshInstance3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.875, 1.125, -0.125)
+mesh = SubResource("BoxMesh_ccfpm")
+skeleton = NodePath("")
+
+[node name="frame_top" type="MeshInstance3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.375, -0.125)
+mesh = SubResource("BoxMesh_vvkw4")
+skeleton = NodePath("")
+
+[node name="frame_collision" type="CollisionPolygon3D" parent="door_frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.125)
+depth = 0.25
+polygon = PackedVector2Array(-1, -1, -1, 1.5, 1, 1.5, 1, -1, 0.75, -1, 0.75, 1.25, -0.75, 1.25, -0.75, -1)
+
+[node name="door_animated" type="AnimatableBody3D" parent="." groups=["button"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, -0.125)
+script = ExtResource("3_7llgv")
+
+[node name="animated_collision" type="CollisionShape3D" parent="door_animated"]
+shape = SubResource("BoxShape3D_a34ul")
+
+[node name="animated_mesh" type="MeshInstance3D" parent="door_animated"]
+mesh = SubResource("BoxMesh_hnjt7")
+
+[connection signal="door_pressed" from="door_animated" to="." method="_on_door_animated_door_pressed"]

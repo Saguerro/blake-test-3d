@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=9 format=3 uid="uid://dl7du3u43rfwm"]
+
+[ext_resource type="Script" uid="uid://o85kbg30q7tr" path="res://weapon_manager/weapon_resource.gd" id="1_cis1k"]
+[ext_resource type="AudioStream" uid="uid://c3p51huco14e7" path="res://assets/sounds/bang.wav" id="2_6uj34"]
+[ext_resource type="PackedScene" uid="uid://dy7bltyvs7dc6" path="res://weapon_manager/crowbar/deagle_new_viewmodel.glb" id="2_cis1k"]
+[ext_resource type="AudioStream" uid="uid://btihq221ibxsv" path="res://assets/sounds/pow.wav" id="3_el66d"]
+[ext_resource type="AudioStream" uid="uid://dqkmy3wcy64ye" path="res://assets/sounds/revo_reload2.wav" id="4_el66d"]
+[ext_resource type="AudioStream" uid="uid://ddrsqgmpri844" path="res://assets/sounds/pistol_reload.wav" id="4_ispwo"]
+[ext_resource type="AudioStream" uid="uid://cn2pvdfh7qovu" path="res://assets/sounds/pistol_gunshot.wav" id="6_cfsca"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cfsca"]
+streams_count = 2
+stream_0/stream = ExtResource("2_6uj34")
+stream_0/weight = 2.0
+stream_1/stream = ExtResource("3_el66d")
+
+[resource]
+script = ExtResource("1_cis1k")
+view_model = ExtResource("2_cis1k")
+view_model_pos = Vector3(0.0319521, -0.363867, 0.52)
+view_model_rot = Vector3(-1.51165e-09, 3.00865, 0.0261799)
+view_model_scale = Vector3(1, 1, 1)
+view_idle_anim = "Idle"
+view_equip_anim = "Unholster"
+view_shoot_anim = "Shoot"
+view_reload_anim = "Reload"
+shoot_sound = ExtResource("6_cfsca")
+reload_sound = ExtResource("4_ispwo")
+alt_shoot_sound = SubResource("AudioStreamRandomizer_cfsca")
+alt_reload_sound = ExtResource("4_el66d")
+damage = 100.0
+current_ammo = 7.0
+magazine_capacity = 7.0
+reserve_ammo = 999.0
+max_reserve_ammo = 999.0
+auto_fire = false
+max_fire_rate_ms = 50.0
+metadata/_custom_type_script = "uid://o85kbg30q7tr"

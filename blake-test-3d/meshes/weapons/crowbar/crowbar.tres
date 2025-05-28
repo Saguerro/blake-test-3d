@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://8xdfemo2dbtq"]
+
+[ext_resource type="Script" uid="uid://whj1js0n2xyq" path="res://scripts/weapons.gd" id="1_dkue3"]
+[ext_resource type="ArrayMesh" uid="uid://vne3trobssj4" path="res://meshes/weapons/crowbar/mesh_crowbar.res" id="1_wdldf"]
+
+[resource]
+script = ExtResource("1_dkue3")
+name = &"crowbar"
+position = Vector3(0.456, -0.662, -0.406)
+rotation = Vector3(0, -106.4, -90)
+scale = Vector3(0.335, 0.335, 0.335)
+mesh = ExtResource("1_wdldf")
+shadow = false
+metadata/_custom_type_script = "uid://whj1js0n2xyq"

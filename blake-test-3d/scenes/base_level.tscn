@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://dxhdlkrhl7qcc"]
+
+[ext_resource type="Script" uid="uid://bipy4ludea8sc" path="res://scripts/base_level.gd" id="1_dbkse"]
+[ext_resource type="Texture2D" uid="uid://bivpderkyrxej" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_0n1tn"]
+[ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_oox4p"]
+[ext_resource type="Texture2D" uid="uid://cnp01btkkm1ml" path="res://assets/textures/face.png" id="4_oox4p"]
+[ext_resource type="PackedScene" uid="uid://dimok4om3qkj" path="res://scenes/player.tscn" id="5_k2uud"]
+[ext_resource type="PackedScene" uid="uid://bnh1ieg1ll1tl" path="res://scenes/user_interface.tscn" id="6_3aqo6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
+size = Vector3(250, 1, 400)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlct4"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_earhg"]
+albedo_texture = ExtResource("2_oox4p")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_u6ue0"]
+material = SubResource("StandardMaterial3D_earhg")
+size = Vector3(50, 1, 50)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bss38"]
+panorama = ExtResource("2_0n1tn")
+
+[sub_resource type="Sky" id="Sky_g08jt"]
+sky_material = SubResource("PanoramaSkyMaterial_bss38")
+
+[sub_resource type="Environment" id="Environment_qn3nj"]
+background_mode = 2
+sky = SubResource("Sky_g08jt")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="world" type="Node3D" groups=["reloadable_level"]]
+script = ExtResource("1_dbkse")
+
+[node name="player" parent="." instance=ExtResource("5_k2uud")]
+
+[node name="world_origin" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1099, 2160.52, 1547)
+pixel_size = 0.586
+billboard = 1
+texture = ExtResource("4_oox4p")
+
+[node name="UserInterface" parent="." instance=ExtResource("6_3aqo6")]
+process_mode = 3
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="base" type="Node3D" parent="stage"]
+
+[node name="player_reset" type="Node3D" parent="stage/base"]
+
+[node name="player_catcher" type="Area3D" parent="stage/base/player_reset"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/base/player_reset/player_catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34, 42)
+shape = SubResource("BoxShape3D_o6xl0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stage/base"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/base/StaticBody3D"]
+shape = SubResource("BoxShape3D_rlct4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stage/base/StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_u6ue0")
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_qn3nj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[connection signal="body_entered" from="stage/base/player_reset/player_catcher" to="." method="_on_player_catcher_body_entered"]

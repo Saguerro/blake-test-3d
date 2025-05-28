@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://q2uum10aiy3"]
+
+[ext_resource type="PackedScene" uid="uid://c1k515kcx88vp" path="res://weapon_manager/crowbar/deagle.glb" id="1_j861h"]
+
+[node name="deagle" instance=ExtResource("1_j861h")]
+
+[node name="Muzzle" type="Node3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14934, 0.752232, 0.061419)
