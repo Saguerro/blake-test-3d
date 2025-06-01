@@ -15,6 +15,8 @@ var current_weapon_view_model : Node3D
 
 var current_weapon_view_model_muzzle : Node3D
 
+var gunshot_stream
+
 @onready var audio_stream_player = $AudioStreamPlayer3D
 
 func update_weapon_model():
@@ -39,10 +41,9 @@ func update_weapon_model():
 		current_weapon_view_model.queue_free()
 
 func play_sound(sound : AudioStream):
-	if sound:
-		if audio_stream_player.stream != sound:
-			audio_stream_player.stream = sound
-		audio_stream_player.play()
+	#audio_stream_player.get_stream_playback().play_stream(sound)
+	print("stream id: " + str(audio_stream_player.get_stream_playback().play_stream(sound)))
+	#audio_stream_player.play()
 
 func stop_sounds():
 	audio_stream_player.stop()
@@ -121,6 +122,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	print("weapon update ran")
 	update_weapon_model()
+	audio_stream_player.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1wejnsxpvgvl"]
+
+[ext_resource type="Script" uid="uid://cdths70m83v82" path="res://gun_pickup.gd" id="1_g12hn"]
+[ext_resource type="PackedScene" uid="uid://c1k515kcx88vp" path="res://weapon_manager/crowbar/deagle.glb" id="2_fel3n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xavdt"]
+size = Vector3(1, 0.5, 1)
+
+[node name="gun_pickup" type="Node3D"]
+script = ExtResource("1_g12hn")
+
+[node name="deagle" parent="." instance=ExtResource("2_fel3n")]
+transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0.25, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_xavdt")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.168856, 0.199099, 1, 1)
+light_energy = 3.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

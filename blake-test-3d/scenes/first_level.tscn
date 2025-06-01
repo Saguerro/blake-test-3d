@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://b27yf8njytanc"]
+[gd_scene load_steps=43 format=3 uid="uid://b27yf8njytanc"]
 
 [ext_resource type="PackedScene" uid="uid://dxhdlkrhl7qcc" path="res://scenes/base_level.tscn" id="1_tqy6i"]
 [ext_resource type="Script" uid="uid://cqvqu6ynyol3l" path="res://scripts/first_level.gd" id="2_imgkl"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bgb8wc6005gme" path="res://scenes/triggered_platform_vertical.tscn" id="12_b30th"]
 [ext_resource type="PackedScene" uid="uid://cw0h7v4byurs4" path="res://scenes/detector_platform_horizontal.tscn" id="13_38i4m"]
 [ext_resource type="PackedScene" uid="uid://bl7d14kv137kt" path="res://scenes/enemy.tscn" id="15_rfcne"]
+[ext_resource type="PackedScene" uid="uid://d1wejnsxpvgvl" path="res://scenes/gun_pickup.tscn" id="16_l5n3x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_snglc"]
 size = Vector3(1, 2, 1)
@@ -318,8 +319,12 @@ travel_speed = 2.0
 [node name="enemy" parent="." index="9" instance=ExtResource("15_rfcne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.5, 19.0001)
 
+[node name="gun_pickup" parent="." index="10" instance=ExtResource("16_l5n3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+
 [connection signal="toggle" from="interactables/button_panel/button" to="interactables/door" method="_on_button_toggle"]
 [connection signal="timeout" from="interactables/button_panel/button/pressed_timer" to="interactables/button_panel/button" method="_on_pressed_timer_timeout"]
 [connection signal="pressed" from="interactables/button_panel_1" to="interactables/small_door_down" method="_on_button_panel_1_pressed"]
 [connection signal="pressed" from="NavigationRegion3D/mobile_terrain/down_platform_button" to="NavigationRegion3D/mobile_terrain/triggered_platform_vertical" method="_on_button_panel_1_pressed"]
 [connection signal="pressed" from="NavigationRegion3D/mobile_terrain/up_platform_button" to="NavigationRegion3D/mobile_terrain/triggered_platform_vertical" method="_on_button_panel_1_pressed"]
+[connection signal="player_entered" from="gun_pickup" to="." method="_on_gun_pickup_player_entered"]

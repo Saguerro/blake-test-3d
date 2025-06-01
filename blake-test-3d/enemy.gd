@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var nav_agent = $NavigationAgent3D
+@onready var nav_agent = $enemy_nav_agent
 @onready var vision_timer = $vision_cone/vision_timer
 @onready var vision_raycast = $vision_cone/vision_raycast
 @onready var aggro_timer = $vision_cone/aggro_timer
@@ -10,6 +10,7 @@ extends CharacterBody3D
 @onready var attack_default_pos = attack_node.position
 @onready var attack_hitbox = $attack/attack_hitbox
 @onready var attack_cooldown = $Timers/attack_cooldown_timer
+@onready var enemy_mesh_material = $enemy_mesh.mesh.material
 
 @export var max_hp = 200.0
 
@@ -23,6 +24,7 @@ var player_location
 func _ready():
 	pass
 
+#runs code based on current state
 func _process(delta):
 	match(current_state):
 		EnemyState.IDLE: _idle_state()
@@ -49,6 +51,7 @@ func _idle_state():
 	#	current_state = EnemyState.CHASE
 	#	return
 
+#controls chase behavior
 func _chase_state(delta):
 	var pos2d := Vector2(global_position.x, global_position.z)
 	var player_pos2d := Vector2(player_location.x, player_location.z)
@@ -58,18 +61,19 @@ func _chase_state(delta):
 	#	current_state = EnemyState.IDLE
 	#	return
 
+#controls attack behavior
 func _attack_state(delta):
-	#print(attack_timer.time_left)
-	attack_node.position.z = move_toward(attack_node.position.z, attack_default_pos.z - 3, delta * 10)
+	attack_node.position.z = move_toward(attack_node.position.z, attack_default_pos.z - 2, delta * 10)
+	attack_node.scale.z = move_toward(attack_node.scale.z, 5.0, delta * 15)
 	#print("attacking")
 	for body in attack_hitbox.get_overlapping_bodies():
 		if body.is_in_group("character"):
 			body.take_damage(25)
-	pass
 
 func _hurt_state():
 	pass
 
+#controls movement and attack start
 func _physics_process(delta: float) -> void:
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
@@ -87,6 +91,11 @@ func _physics_process(delta: float) -> void:
 			print(can_attack)
 			can_attack = false
 			print("attack_started")
+			enemy_mesh_material.albedo_color = Color(1,0,0)
+			await get_tree().create_timer(.05).timeout
+			enemy_mesh_material.albedo_color = Color(.5,0,0)
+			await get_tree().create_timer(.4).timeout
+			
 			attack_timer.start()
 			current_state = EnemyState.ATTACk
 
@@ -101,13 +110,14 @@ func take_damage(amount : int):
 	if current_hp <= 0:
 		self.queue_free()
 
+#updates health bar based on current health upon call
 func update_health_bar():
 	var health_bar = $health_bar/SubViewport/ProgressBar
 	
 	health_bar.value = (current_hp / max_hp) * 100
 	print(str(health_bar.value))
 
-
+#checks if player is visible in current sight range
 func _on_vision_timer_timeout() -> void:
 	var overlaps = $vision_cone.get_overlapping_bodies()
 	if overlaps.size() > 0:
@@ -132,6 +142,7 @@ func _on_vision_timer_timeout() -> void:
 						vision_raycast.debug_shape_custom_color = Color(0, 255, 0)
 	vision_timer.start()
 
+#moves to idle state from chase if player not visible after a few seconds
 func _on_aggro_timer_timeout() -> void:
 	if current_state == EnemyState.CHASE:
 		current_state = EnemyState.IDLE
@@ -139,10 +150,12 @@ func _on_aggro_timer_timeout() -> void:
 func on_hit():
 	pass
 
+#controls attack duration and end behavior
 func _on_attack_timer_timeout() -> void:
 	print("attack finished")
 	current_state = EnemyState.CHASE
 	attack_node.position.z = attack_default_pos.z
+	attack_node.scale.z = 1
 	attack_cooldown.start()
 
 

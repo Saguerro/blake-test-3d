@@ -32,7 +32,7 @@ material = SubResource("StandardMaterial3D_s08m1")
 size = Vector3(1.5, 2.25, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ayktf"]
-size = Vector3(1.5, 2.25, 0.25)
+size = Vector3(1.5, 2.25, 0.5)
 
 [node name="small_door_fragile" type="Node3D"]
 script = ExtResource("1_ayktf")
@@ -128,10 +128,13 @@ skeleton = NodePath("")
 [node name="player_detector" type="Area3D" parent="."]
 
 [node name="detector_collision" type="CollisionShape3D" parent="player_detector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, -0.125)
 shape = SubResource("BoxShape3D_ayktf")
 
-[node name="hit_direction" type="Marker3D" parent="."]
+[node name="hit_direction_front" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.341842)
+
+[node name="hit_direction_back" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.592)
 
 [connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]
