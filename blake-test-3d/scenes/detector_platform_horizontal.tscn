@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cw0h7v4byurs4"]
 
-[ext_resource type="Script" uid="uid://by62frwvhx6v1" path="res://scenes/detector_platform_horizontal.gd" id="1_bpv5p"]
+[ext_resource type="Script" uid="uid://by62frwvhx6v1" path="res://scripts/detector_platform_horizontal.gd" id="1_bpv5p"]
 [ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="2_xhc7i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6gvq"]
