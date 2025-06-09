@@ -33,6 +33,7 @@ button=""
 reloadable_level=""
 grabbable=""
 enemy=""
+wallrun=""
 
 [input]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bwclt6ej78m3l"]
+[gd_scene load_steps=46 format=3 uid="uid://bwclt6ej78m3l"]
 
 [ext_resource type="Script" uid="uid://bipy4ludea8sc" path="res://scripts/base_level.gd" id="1_fem2g"]
 [ext_resource type="PackedScene" uid="uid://dimok4om3qkj" path="res://scenes/player.tscn" id="2_31kg2"]
@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="5_vlwwk"]
 [ext_resource type="Texture2D" uid="uid://bivpderkyrxej" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="6_qc43e"]
 [ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="7_31kg2"]
+[ext_resource type="PackedScene" uid="uid://uitpo6e5gdfc" path="res://scenes/small_door_down.tscn" id="7_qc43e"]
 [ext_resource type="PackedScene" uid="uid://cw0h7v4byurs4" path="res://scenes/detector_platform_horizontal.tscn" id="8_6s1ea"]
+[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scenes/small_area_door_down.gd" id="8_jjf0l"]
+[ext_resource type="PackedScene" uid="uid://dmehs2dx8t8x6" path="res://scenes/detector_platform_vertical.tscn" id="9_w40hx"]
+[ext_resource type="PackedScene" uid="uid://dw1l72caefatq" path="res://scenes/area_door_down.tscn" id="12_jjf0l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
 size = Vector3(250, 1, 400)
@@ -56,6 +60,20 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_earhg")
 size = Vector3(10, 7, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_vlwwk"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_earhg")
+size = Vector3(10, 7, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qc43e"]
+data = PackedVector3Array(-5, 3.5, 0.5, 5, 3.5, 0.5, -5, -3.5, 0.5, 5, 3.5, 0.5, 5, -3.5, 0.5, -5, -3.5, 0.5, 5, 3.5, -0.5, -5, 3.5, -0.5, 5, -3.5, -0.5, -5, 3.5, -0.5, -5, -3.5, -0.5, 5, -3.5, -0.5, 5, 3.5, 0.5, 5, 3.5, -0.5, 5, -3.5, 0.5, 5, 3.5, -0.5, 5, -3.5, -0.5, 5, -3.5, 0.5, -5, 3.5, -0.5, -5, 3.5, 0.5, -5, -3.5, -0.5, -5, 3.5, 0.5, -5, -3.5, 0.5, -5, -3.5, -0.5, 5, 3.5, 0.5, -5, 3.5, 0.5, 5, 3.5, -0.5, -5, 3.5, 0.5, -5, 3.5, -0.5, 5, 3.5, -0.5, -5, -3.5, 0.5, 5, -3.5, 0.5, -5, -3.5, -0.5, 5, -3.5, 0.5, 5, -3.5, -0.5, -5, -3.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vj1s7"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjf0l"]
+size = Vector3(2, 2.5, 0.25)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6s1ea"]
 resource_local_to_scene = true
 size = Vector3(30, 1, 26)
@@ -81,12 +99,12 @@ size = Vector3(14, 14, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_vj1s7"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_earhg")
-size = Vector3(2, 10.5, 1)
+size = Vector3(2, 12.5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_471vg"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_earhg")
-size = Vector3(2, 11, 1)
+size = Vector3(2, 12, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6s1ea"]
 albedo_texture = ExtResource("7_31kg2")
@@ -127,11 +145,14 @@ size = Vector3(6, 1, 6)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6lba3"]
 data = PackedVector3Array(-3, 0.5, 3, 3, 0.5, 3, -3, -0.5, 3, 3, 0.5, 3, 3, -0.5, 3, -3, -0.5, 3, 3, 0.5, -3, -3, 0.5, -3, 3, -0.5, -3, -3, 0.5, -3, -3, -0.5, -3, 3, -0.5, -3, 3, 0.5, 3, 3, 0.5, -3, 3, -0.5, 3, 3, 0.5, -3, 3, -0.5, -3, 3, -0.5, 3, -3, 0.5, -3, -3, 0.5, 3, -3, -0.5, -3, -3, 0.5, 3, -3, -0.5, 3, -3, -0.5, -3, 3, 0.5, 3, -3, 0.5, 3, 3, 0.5, -3, -3, 0.5, 3, -3, 0.5, -3, 3, 0.5, -3, -3, -0.5, 3, 3, -0.5, 3, -3, -0.5, -3, 3, -0.5, 3, 3, -0.5, -3, -3, -0.5, -3)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_471vg"]
+size = Vector3(5, 3, 4)
+
 [node name="world" type="Node3D" groups=["reloadable_level"]]
 script = ExtResource("1_fem2g")
 
 [node name="player" parent="." instance=ExtResource("2_31kg2")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -4)
 
 [node name="world_origin" type="Node3D" parent="."]
 
@@ -223,13 +244,40 @@ skeleton = NodePath("../CollisionShape3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, 8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6)
 shape = SubResource("BoxShape3D_31kg2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel/wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6)
 mesh = SubResource("BoxMesh_6s1ea")
 skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rooms/start_room/tunnel/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.5, 4)
+mesh = SubResource("BoxMesh_vlwwk")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="rooms/start_room/tunnel/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.5, 4)
+shape = SubResource("ConcavePolygonShape3D_qc43e")
+
+[node name="small_door_down" parent="rooms/start_room/tunnel" instance=ExtResource("7_qc43e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 21)
+script = ExtResource("8_jjf0l")
+
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/tunnel/small_door_down"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel/small_door_down/door_open_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_vj1s7")
+
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/tunnel/small_door_down"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel/small_door_down/door_close_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_jjf0l")
 
 [node name="open_area" type="Node3D" parent="rooms/start_room"]
 
@@ -244,6 +292,11 @@ shape = SubResource("BoxShape3D_6s1ea")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/open_area/base_geometry/floor1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.5)
+mesh = SubResource("BoxMesh_w40hx")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rooms/start_room/open_area/base_geometry/floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35.5)
 mesh = SubResource("BoxMesh_w40hx")
 skeleton = NodePath("../CollisionShape3D")
 
@@ -439,8 +492,37 @@ travel_distance = 20.0
 travel_speed = 2.0
 
 [node name="detector_platform_horizontal2" parent="rooms/start_room/open_area/interactable_geometry" instance=ExtResource("8_6s1ea")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 6, 5.75, 26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.75, 37)
 travel_distance = 20.0
 travel_speed = 2.0
 
+[node name="detector_platform_vertical" parent="rooms/start_room/open_area/interactable_geometry" instance=ExtResource("9_w40hx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 30.5)
+travel_height = 10.75
+travel_speed = 2.0
+
+[node name="detector_platform_vertical2" parent="rooms/start_room/open_area/interactable_geometry" instance=ExtResource("9_w40hx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 38.5)
+travel_height = 10.75
+travel_speed = 2.0
+
+[node name="small_door_down" parent="rooms/start_room/open_area/interactable_geometry" instance=ExtResource("12_jjf0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 47.125)
+
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/open_area/interactable_geometry/small_door_down"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/open_area/interactable_geometry/small_door_down/door_open_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
+shape = SubResource("BoxShape3D_471vg")
+
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/open_area/interactable_geometry/small_door_down"]
+
+[node name="buttons_doors_room" type="Node3D" parent="rooms"]
+
 [connection signal="body_entered" from="stage/base/player_reset/player_catcher" to="." method="_on_player_catcher_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_open_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_open_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_door_open_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_close_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_close_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/open_area/interactable_geometry/small_door_down/door_open_trigger" to="rooms/start_room/open_area/interactable_geometry/small_door_down" method="_on_door_open_trigger_body_entered"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw1l72caefatq"]
+
+[ext_resource type="PackedScene" uid="uid://uitpo6e5gdfc" path="res://scenes/small_door_down.tscn" id="1_lniij"]
+[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scenes/small_area_door_down.gd" id="2_weps7"]
+
+[node name="small_door_down" instance=ExtResource("1_lniij")]
+script = ExtResource("2_weps7")

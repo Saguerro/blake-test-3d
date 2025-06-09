@@ -182,8 +182,9 @@ func wall_run(delta):
 		var wall_normal = get_slide_collision(0).get_normal()
 		var wall_forward = Vector3.UP.cross(wall_normal).normalized()
 		var dot = wall_forward.dot(direction.normalized())
+		var collider = get_slide_collision(0).get_collider()
 		#wall run check
-		if is_on_wall_only() and wall_runnable and Input.is_action_pressed("sprint") and !(dot < .2 and dot > -.2) and !sliding:
+		if is_on_wall_only() and wall_runnable and Input.is_action_pressed("sprint") and !(dot < .2 and dot > -.2) and !sliding and collider.is_in_group("wallrun"):
 			print(str(dot))
 			if dot > .2:
 				print("1")
