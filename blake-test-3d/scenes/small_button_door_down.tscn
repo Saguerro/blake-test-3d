@@ -1,13 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://cqn4tv8qw3nmu"]
 
 [ext_resource type="Script" uid="uid://bn0p860e7wt7n" path="res://scripts/small_button_door_down.gd" id="1_tk1w7"]
-[ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_7llgv"]
+[ext_resource type="Texture2D" uid="uid://cxgcn8emualww" path="res://assets/textures/dev/grids/Dark/texture_05.png" id="2_7llgv"]
 [ext_resource type="Script" uid="uid://bo3wtodrkwm3w" path="res://scripts/button_door_interactable.gd" id="3_7llgv"]
 [ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="3_h5xj5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4w51"]
 albedo_texture = ExtResource("2_7llgv")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_ccfpm"]
 material = SubResource("StandardMaterial3D_l4w51")
@@ -16,6 +17,7 @@ size = Vector3(0.25, 2.25, 0.25)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y34m"]
 albedo_texture = ExtResource("2_7llgv")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_vvkw4"]
 material = SubResource("StandardMaterial3D_6y34m")
@@ -27,6 +29,7 @@ size = Vector3(1.5, 2.25, 0.25)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s08m1"]
 albedo_texture = ExtResource("3_h5xj5")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_hnjt7"]
 material = SubResource("StandardMaterial3D_s08m1")

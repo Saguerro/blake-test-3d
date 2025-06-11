@@ -80,6 +80,7 @@ var wish_dir := Vector3.ZERO
 var cam_aligned_wish_dir := Vector3.ZERO
 var noclip_speed_mult := 2.0
 var noclip := false
+#var was_on_ground = false
 
 #input vars
 var direction := Vector3.ZERO
@@ -385,6 +386,11 @@ func _physics_process(delta: float) -> void:
 		sprinting_speed = 15.0
 		slide_timer = slide_timer_max
 	
+	#handle double jump after running off of terrain
+	if !is_on_floor() && (last_velocity.y == 0) && !noclip:
+		double_jump = true
+	
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if is_on_floor() and !air_dashing:
@@ -456,7 +462,7 @@ func _physics_process(delta: float) -> void:
 	cam_aligned_wish_dir = %Camera3D.global_transform.basis * Vector3(input_dir.x, 0., input_dir.y)
 	
 	last_velocity = velocity
-	
+	#was_on_ground = is_on_floor()
 	
 	#footstep sounds
 	if not footstep_landed and is_on_floor(): #landed
@@ -468,7 +474,7 @@ func _physics_process(delta: float) -> void:
 		footstep_sound.play()
 	footstep_landed = is_on_floor()
 
-##noclip
+#noclip
 func _handle_noclip(delta) -> bool:
 	if Input.is_action_just_pressed("_noclip"):
 		noclip = !noclip

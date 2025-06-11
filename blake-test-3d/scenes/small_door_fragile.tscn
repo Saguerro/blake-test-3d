@@ -1,20 +1,22 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhnedki8hvn28"]
 
 [ext_resource type="Script" uid="uid://rg7ums0slqoe" path="res://scripts/small_door_fragile.gd" id="1_ayktf"]
-[ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_rvpnd"]
+[ext_resource type="Texture2D" uid="uid://cxgcn8emualww" path="res://assets/textures/dev/grids/Dark/texture_05.png" id="2_ayktf"]
 [ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="3_ek2j1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4w51"]
-albedo_texture = ExtResource("2_rvpnd")
+albedo_texture = ExtResource("2_ayktf")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_ccfpm"]
 material = SubResource("StandardMaterial3D_l4w51")
 size = Vector3(0.25, 2.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y34m"]
-albedo_texture = ExtResource("2_rvpnd")
+albedo_texture = ExtResource("2_ayktf")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_vvkw4"]
 material = SubResource("StandardMaterial3D_6y34m")
@@ -26,6 +28,7 @@ size = Vector3(1.5, 2.25, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s08m1"]
 albedo_texture = ExtResource("3_ek2j1")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_hnjt7"]
 material = SubResource("StandardMaterial3D_s08m1")
