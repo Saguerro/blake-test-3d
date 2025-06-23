@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="7_31kg2"]
 [ext_resource type="PackedScene" uid="uid://uitpo6e5gdfc" path="res://scenes/small_door_down.tscn" id="7_qc43e"]
 [ext_resource type="PackedScene" uid="uid://cw0h7v4byurs4" path="res://scenes/detector_platform_horizontal.tscn" id="8_6s1ea"]
-[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scenes/small_area_door_down.gd" id="8_jjf0l"]
+[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scripts/small_area_door_down.gd" id="8_jjf0l"]
 [ext_resource type="PackedScene" uid="uid://dmehs2dx8t8x6" path="res://scenes/detector_platform_vertical.tscn" id="9_w40hx"]
 [ext_resource type="PackedScene" uid="uid://dw1l72caefatq" path="res://scenes/area_door_down.tscn" id="12_jjf0l"]
 
@@ -521,8 +521,8 @@ shape = SubResource("BoxShape3D_471vg")
 [node name="buttons_doors_room" type="Node3D" parent="rooms"]
 
 [connection signal="body_entered" from="stage/base/player_reset/player_catcher" to="." method="_on_player_catcher_body_entered"]
-[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_open_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_open_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_door_open_trigger_body_entered"]
-[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_close_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_open_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_close_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel/small_door_down/door_close_trigger" to="rooms/start_room/tunnel/small_door_down" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/open_area/interactable_geometry/small_door_down/door_open_trigger" to="rooms/start_room/open_area/interactable_geometry/small_door_down" method="_on_door_open_trigger_body_entered"]

@@ -10,14 +10,13 @@ signal unpause
 @onready var level_select = $Menu/LevelSelect
 @onready var button_sound = $ButtonSound
 @onready var controls_menu = $Menu/ControlsMenu
-
 var loaded_level
 
 func load_config():
 	var config = ConfigFile.new()
 	var err = config.load("user://config.cfg")
 	if err != OK:
-		print("wack")
+		print("config file load error")
 		return
 	
 	$Menu/SettingsMenu/resolution_menu.select(config.get_value("Settings", "resolution"))
@@ -29,7 +28,7 @@ func load_config():
 func _ready():
 	print(get_tree().current_scene.name)
 	if get_tree().current_scene.name == "menu_background":
-		print("wack")
+		print("config file load error")
 		main_menu.show()
 		settings_menu.hide()
 		pause_menu.hide()
@@ -83,6 +82,7 @@ func _on_settings_back_button_pressed() -> void:
 	settings_menu.hide()
 	main_menu.show()
 	button_sound.play()
+	load_config()
 
 func _on_alt_sounds_toggle_toggled(toggled_on: bool) -> void:
 	AltSounds.alt_sounds_on = toggled_on
@@ -103,9 +103,14 @@ func _on_resolution_menu_item_selected(index: int) -> void:
 		get_window().set_content_scale_size(Vector2(3440, 1440))
 
 #level select
+
+func _on_level_one_button_pressed() -> void:
+	level_select.hide()
+	load_level("res://scenes/level_one.tscn")
+
 func _on_test_plane_button_pressed() -> void:
 	level_select.hide()
-	load_level("res://scenes/first_level.tscn")
+	load_level("res://scenes/test_plane.tscn")
 
 func _on_blake_test_3d_button_pressed() -> void:
 	level_select.hide()
@@ -160,7 +165,7 @@ func _on_controls_back_button_pressed() -> void:
 	main_menu.show()
 	button_sound.play()
 
-
+#settings save choices
 func _on_settings_save_button_pressed() -> void:
 	var config = ConfigFile.new()
 	
@@ -170,3 +175,33 @@ func _on_settings_save_button_pressed() -> void:
 	config.set_value("Settings", "alt_sounds", AltSounds.alt_sounds_check())
 	
 	config.save("user://config.cfg")
+
+#loads level progress
+func load_level_progress(current_level):
+	var progress = ConfigFile.new()
+	var err = progress.load("user://progress.cfg")
+	if err != OK:
+		print("config file load error")
+		return
+	print(current_level)
+	print(progress.get_value("Level Checkpoint", current_level))
+	return progress.get_value("Level Checkpoint", current_level)
+
+#saves level progress
+func save_level_progress(current_level, current_checkpoint):
+	var progress = ConfigFile.new()
+	if current_checkpoint != null:
+		progress.set_value("Level Checkpoint", current_level, current_checkpoint)
+	progress.save("user://progress.cfg")
+
+#clear level progress
+func clear_level_progress():
+	var progress = ConfigFile.new()
+	
+	var err = progress.load("user://progress.cfg")
+	if err != OK:
+		print("config file load error")
+		return
+	
+	progress.erase_section("Level Checkpoint")
+	progress.save("user://progress.cfg")

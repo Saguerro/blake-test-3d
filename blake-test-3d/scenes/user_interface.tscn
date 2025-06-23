@@ -432,17 +432,49 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 90
 text = "Where you going?"
 
+[node name="level_one_button" type="Button" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.417
+anchor_right = 0.5
+anchor_bottom = 0.417
+offset_left = -209.0
+offset_top = -162.36
+offset_right = 209.0
+offset_bottom = -79.36
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+text = "Level One
+"
+
+[node name="blake_test_3d_button" type="Button" parent="Menu/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.417
+anchor_right = 0.5
+anchor_bottom = 0.417
+offset_left = -209.0
+offset_top = -42.36
+offset_right = 209.0
+offset_bottom = 40.64
+grow_horizontal = 2
+theme = ExtResource("2_lmgon")
+text = "Blake Test 3D
+"
+
 [node name="base_level_button" type="Button" parent="Menu/LevelSelect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.528
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.528
 offset_left = -180.0
-offset_top = -41.0
+offset_top = -42.24
 offset_right = 180.0
-offset_bottom = 42.0
+offset_bottom = 40.76
 grow_horizontal = 2
 theme = ExtResource("2_lmgon")
 text = "Base Level"
@@ -451,32 +483,16 @@ text = "Base Level"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.611
+anchor_top = 0.639
 anchor_right = 0.5
-anchor_bottom = 0.611
+anchor_bottom = 0.639
 offset_left = -180.0
-offset_top = -41.38
+offset_top = -42.1201
 offset_right = 180.0
-offset_bottom = 41.62
+offset_bottom = 40.8799
 grow_horizontal = 2
 theme = ExtResource("2_lmgon")
 text = "Test Plane
-"
-
-[node name="blake_test_3d_button" type="Button" parent="Menu/LevelSelect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.389
-anchor_right = 0.5
-anchor_bottom = 0.389
-offset_left = -180.0
-offset_top = -41.62
-offset_right = 180.0
-offset_bottom = 41.38
-grow_horizontal = 2
-theme = ExtResource("2_lmgon")
-text = "Blake Test 3D
 "
 
 [node name="level_select_back_button" type="Button" parent="Menu/LevelSelect"]
@@ -582,8 +598,9 @@ volume_db = 5.0
 [connection signal="pressed" from="Menu/PauseMenu/pause_settings_button" to="." method="_on_pause_settings_button_pressed"]
 [connection signal="pressed" from="Menu/PauseMenu/back_to_game" to="." method="_on_back_to_game_pressed"]
 [connection signal="pressed" from="Menu/PauseMenu/pause_quit_button" to="." method="_on_pause_quit_button_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect/level_one_button" to="." method="_on_level_one_button_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect/blake_test_3d_button" to="." method="_on_blake_test_3d_button_pressed"]
 [connection signal="pressed" from="Menu/LevelSelect/base_level_button" to="." method="_on_base_level_button_pressed"]
 [connection signal="pressed" from="Menu/LevelSelect/test_plane_button" to="." method="_on_test_plane_button_pressed"]
-[connection signal="pressed" from="Menu/LevelSelect/blake_test_3d_button" to="." method="_on_blake_test_3d_button_pressed"]
 [connection signal="pressed" from="Menu/LevelSelect/level_select_back_button" to="." method="_on_level_select_back_button_pressed"]
 [connection signal="pressed" from="Menu/ControlsMenu/controls_back_button" to="." method="_on_controls_back_button_pressed"]

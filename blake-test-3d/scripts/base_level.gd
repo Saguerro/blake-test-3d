@@ -4,6 +4,8 @@ signal restart
 
 @onready var player = $player
 
+@export var level_name : String
+
 func _ready():
 	pass
 

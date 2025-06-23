@@ -1,14 +1,15 @@
-[gd_scene load_steps=60 format=3 uid="uid://b7y04xusi7603"]
+[gd_scene load_steps=64 format=3 uid="uid://b7y04xusi7603"]
 
-[ext_resource type="Script" uid="uid://bipy4ludea8sc" path="res://scripts/base_level.gd" id="1_036lt"]
+[ext_resource type="Script" uid="uid://ca54wbnki3et5" path="res://scripts/level_one.gd" id="1_s6ikc"]
 [ext_resource type="PackedScene" uid="uid://dimok4om3qkj" path="res://scenes/player.tscn" id="2_nlxio"]
 [ext_resource type="Texture2D" uid="uid://cnp01btkkm1ml" path="res://assets/textures/face.png" id="3_xrbqg"]
 [ext_resource type="PackedScene" uid="uid://bnh1ieg1ll1tl" path="res://scenes/user_interface.tscn" id="4_dv7nr"]
 [ext_resource type="Texture2D" uid="uid://bivpderkyrxej" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="5_lgrt7"]
 [ext_resource type="Texture2D" uid="uid://cxgcn8emualww" path="res://assets/textures/dev/grids/Dark/texture_05.png" id="6_036lt"]
 [ext_resource type="PackedScene" uid="uid://uitpo6e5gdfc" path="res://scenes/small_door_down.tscn" id="7_w4tp6"]
-[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scenes/small_area_door_down.gd" id="8_unjau"]
+[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scripts/small_area_door_down.gd" id="8_unjau"]
 [ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="9_itxlw"]
+[ext_resource type="Theme" uid="uid://d2ljv58wchtxi" path="res://ui/themes/menu.tres" id="12_036lt"]
 [ext_resource type="Texture2D" uid="uid://bcp6rte8a5kml" path="res://assets/textures/dev/grids/Light/texture_07.png" id="12_nlxio"]
 [ext_resource type="PackedScene" uid="uid://dw1l72caefatq" path="res://scenes/area_door_down.tscn" id="12_t3lbx"]
 
@@ -18,12 +19,12 @@ size = Vector3(250, 1, 400)
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bss38"]
 panorama = ExtResource("5_lgrt7")
 
-[sub_resource type="Sky" id="Sky_g08jt"]
+[sub_resource type="Sky" id="Sky_nlxio"]
 sky_material = SubResource("PanoramaSkyMaterial_bss38")
 
 [sub_resource type="Environment" id="Environment_qn3nj"]
 background_mode = 2
-sky = SubResource("Sky_g08jt")
+sky = SubResource("Sky_nlxio")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -31,14 +32,14 @@ glow_enabled = true
 resource_local_to_scene = true
 size = Vector3(6, 1, 25)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_earhg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrbqg"]
 albedo_texture = ExtResource("6_036lt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_u6ue0"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(6, 1, 25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fem2g"]
@@ -47,7 +48,7 @@ size = Vector3(1, 6, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_31kg2"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(1, 14, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31kg2"]
@@ -56,7 +57,7 @@ size = Vector3(6, 5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6s1ea"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(6, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vj1s7"]
@@ -65,13 +66,22 @@ size = Vector3(4, 4, 0.25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjf0l"]
 size = Vector3(2, 2.5, 0.25)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrbqg"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dv7nr"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgrt7"]
+size = Vector3(4, 4, 0.25)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6s1ea"]
 resource_local_to_scene = true
 size = Vector3(6, 1, 12.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w40hx"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(30, 1, 12.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_036lt"]
@@ -80,7 +90,7 @@ size = Vector3(6, 1, 28)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s6ikc"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(4, 1, 26.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vlwwk"]
@@ -93,24 +103,24 @@ size = Vector3(2, 2.5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jjf0l"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(1, 4, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vj1s7"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_earhg")
+material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(2, 2.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y8ti4"]
 size = Vector3(4, 2.5, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_astit"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dv7nr"]
 albedo_texture = ExtResource("9_itxlw")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_o5wbv"]
-material = SubResource("StandardMaterial3D_astit")
+material = SubResource("StandardMaterial3D_dv7nr")
 size = Vector3(4, 2.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlxio"]
@@ -123,25 +133,25 @@ albedo_texture = ExtResource("6_036lt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5wbv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4tp6"]
 albedo_texture = ExtResource("6_036lt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_036lt"]
-material = SubResource("StandardMaterial3D_o5wbv")
+material = SubResource("StandardMaterial3D_w4tp6")
 size = Vector3(4, 6, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nlxio"]
 data = PackedVector3Array(-2, 3, 0.5, 2, 3, 0.5, -2, -3, 0.5, 2, 3, 0.5, 2, -3, 0.5, -2, -3, 0.5, 2, 3, -0.5, -2, 3, -0.5, 2, -3, -0.5, -2, 3, -0.5, -2, -3, -0.5, 2, -3, -0.5, 2, 3, 0.5, 2, 3, -0.5, 2, -3, 0.5, 2, 3, -0.5, 2, -3, -0.5, 2, -3, 0.5, -2, 3, -0.5, -2, 3, 0.5, -2, -3, -0.5, -2, 3, 0.5, -2, -3, 0.5, -2, -3, -0.5, 2, 3, 0.5, -2, 3, 0.5, 2, 3, -0.5, -2, 3, 0.5, -2, 3, -0.5, 2, 3, -0.5, -2, -3, 0.5, 2, -3, 0.5, -2, -3, -0.5, 2, -3, 0.5, 2, -3, -0.5, -2, -3, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrbqg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfeen"]
 albedo_texture = ExtResource("6_036lt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_dv7nr"]
-material = SubResource("StandardMaterial3D_xrbqg")
+material = SubResource("StandardMaterial3D_vfeen")
 size = Vector3(4, 1, 6)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_036lt"]
@@ -153,22 +163,22 @@ size = Vector3(2, 2.5, 0.25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6ikc"]
 size = Vector3(1, 4, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_036lt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3lbx"]
 albedo_texture = ExtResource("6_036lt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_nlxio"]
-material = SubResource("StandardMaterial3D_036lt")
+material = SubResource("StandardMaterial3D_t3lbx")
 size = Vector3(1, 4, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dv7nr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilbkt"]
 albedo_texture = ExtResource("6_036lt")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_lgrt7"]
-material = SubResource("StandardMaterial3D_dv7nr")
+material = SubResource("StandardMaterial3D_ilbkt")
 size = Vector3(2, 1.5, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4i3tx"]
@@ -197,13 +207,13 @@ albedo_texture = ExtResource("9_itxlw")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4tp6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m65uy"]
 albedo_texture = ExtResource("9_itxlw")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="PrismMesh" id="PrismMesh_unjau"]
-material = SubResource("StandardMaterial3D_w4tp6")
+material = SubResource("StandardMaterial3D_m65uy")
 left_to_right = 0.0
 size = Vector3(8, 6, 2)
 
@@ -214,7 +224,8 @@ data = PackedVector3Array(-4, 3, 1, 4, -3, 1, -4, -3, 1, -4, 3, -1, -4, -3, -1, 
 data = PackedVector3Array(-4, 3, 1, 4, -3, 1, -4, -3, 1, -4, 3, -1, -4, -3, -1, 4, -3, -1, -4, 3, 1, -4, 3, -1, 4, -3, 1, -4, 3, -1, 4, -3, -1, 4, -3, 1, -4, 3, -1, -4, 3, 1, -4, -3, -1, -4, 3, 1, -4, -3, 1, -4, -3, -1, -4, -3, 1, 4, -3, 1, -4, -3, -1, 4, -3, 1, 4, -3, -1, -4, -3, -1)
 
 [node name="world" type="Node3D" groups=["reloadable_level"]]
-script = ExtResource("1_036lt")
+script = ExtResource("1_s6ikc")
+level_name = "level_one"
 
 [node name="player" parent="." instance=ExtResource("2_nlxio")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -4)
@@ -227,7 +238,7 @@ pixel_size = 0.586
 billboard = 1
 texture = ExtResource("3_xrbqg")
 
-[node name="UserInterface" parent="." instance=ExtResource("4_dv7nr")]
+[node name="user_interface" parent="." instance=ExtResource("4_dv7nr")]
 process_mode = 3
 
 [node name="stage" type="Node3D" parent="."]
@@ -334,6 +345,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/small_door_down/door_close_trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_jjf0l")
+
+[node name="triggers" type="Node3D" parent="rooms/start_room/tunnel_area"]
+
+[node name="checkpoint_1" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 26)
+shape = SubResource("BoxShape3D_xrbqg")
+
+[node name="checkpoint_1_spawnpoint" type="Marker3D" parent="rooms/start_room/tunnel_area/triggers/checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 26)
+
+[node name="player_jump_fail" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.25, 36)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/player_jump_fail"]
+shape = SubResource("BoxShape3D_dv7nr")
+
+[node name="jump_success" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/jump_success"]
+shape = SubResource("BoxShape3D_lgrt7")
 
 [node name="movement_area" type="Node3D" parent="rooms/start_room"]
 
@@ -617,6 +651,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+use_collision = true
 size = Vector3(20, 1, 50)
 material = SubResource("StandardMaterial3D_4i3tx")
 
@@ -785,11 +820,30 @@ shape = SubResource("ConcavePolygonShape3D_s6ikc")
 [node name="movement_test" type="Node3D" parent="rooms/start_room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 
+[node name="player_message" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.949
+anchor_right = 0.5
+anchor_bottom = 0.949
+offset_left = -20.0
+offset_top = -255.92
+offset_right = 20.0
+offset_bottom = -144.92
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("12_036lt")
+theme_override_font_sizes/font_size = 90
+
 [connection signal="body_entered" from="stage/base/player_reset/player_catcher" to="." method="_on_player_catcher_body_entered"]
-[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_open_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_open_trigger" to="." method="_on_door_open_trigger_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_open_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_door_open_trigger_body_entered"]
-[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_close_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_close_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_close_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/checkpoint_1" to="." method="_on_checkpoint_1_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/player_jump_fail" to="." method="_on_player_jump_fail_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/jump_success" to="." method="_on_jump_success_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/movement_area/door2/door/door_close_trigger" to="rooms/start_room/movement_area/door2/door" method="_on_door_close_trigger_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/movement_area/door2/door/door_open_trigger" to="rooms/start_room/movement_area/door2/door" method="_on_door_open_trigger_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/movement_area/door3/door/door_close_trigger" to="rooms/start_room/movement_area/door3/door" method="_on_door_close_trigger_body_entered"]
