@@ -1,7 +1,7 @@
 extends "res://scripts/base_level.gd"
 
 @onready var gun_picked_up = false
-@onready var user_interface = $UserInterface
+@onready var user_interface = $user_interface
 
 func _input(event):
 	super(event)

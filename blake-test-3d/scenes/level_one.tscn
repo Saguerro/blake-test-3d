@@ -75,6 +75,9 @@ size = Vector3(4, 0.5, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lgrt7"]
 size = Vector3(4, 4, 0.25)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_036lt"]
+size = Vector3(4, 4, 0.25)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6s1ea"]
 resource_local_to_scene = true
 size = Vector3(6, 1, 12.25)
@@ -83,15 +86,6 @@ size = Vector3(6, 1, 12.25)
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_xrbqg")
 size = Vector3(30, 1, 12.25)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_036lt"]
-resource_local_to_scene = true
-size = Vector3(6, 1, 28)
-
-[sub_resource type="BoxMesh" id="BoxMesh_s6ikc"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_xrbqg")
-size = Vector3(4, 1, 26.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vlwwk"]
 resource_local_to_scene = true
@@ -156,6 +150,11 @@ size = Vector3(4, 1, 6)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_036lt"]
 data = PackedVector3Array(-2, 0.5, 3, 2, 0.5, 3, -2, -0.5, 3, 2, 0.5, 3, 2, -0.5, 3, -2, -0.5, 3, 2, 0.5, -3, -2, 0.5, -3, 2, -0.5, -3, -2, 0.5, -3, -2, -0.5, -3, 2, -0.5, -3, 2, 0.5, 3, 2, 0.5, -3, 2, -0.5, 3, 2, 0.5, -3, 2, -0.5, -3, 2, -0.5, 3, -2, 0.5, -3, -2, 0.5, 3, -2, -0.5, -3, -2, 0.5, 3, -2, -0.5, 3, -2, -0.5, -3, 2, 0.5, 3, -2, 0.5, 3, 2, 0.5, -3, -2, 0.5, 3, -2, 0.5, -3, 2, 0.5, -3, -2, -0.5, 3, 2, -0.5, 3, -2, -0.5, -3, 2, -0.5, 3, 2, -0.5, -3, -2, -0.5, -3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_036lt"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5wbv"]
 size = Vector3(2, 2.5, 0.25)
@@ -369,186 +368,198 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 40)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/jump_success"]
 shape = SubResource("BoxShape3D_lgrt7")
 
-[node name="movement_area" type="Node3D" parent="rooms/start_room"]
+[node name="crouch_tutorial" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 55)
 
-[node name="base_geometry" type="Node3D" parent="rooms/start_room/movement_area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/crouch_tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_036lt")
 
-[node name="floor1" type="StaticBody3D" parent="rooms/start_room/movement_area/base_geometry"]
+[node name="shift_tutorial" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 68)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/shift_tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_036lt")
+
+[node name="base_geometry" type="Node3D" parent="rooms/start_room/tunnel_area"]
+
+[node name="floor1" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/base_geometry/floor1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/floor1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.875)
 shape = SubResource("BoxShape3D_6s1ea")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/base_geometry/floor1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/floor1"]
 transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.875)
 mesh = SubResource("BoxMesh_w40hx")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="floor2" type="StaticBody3D" parent="rooms/start_room/movement_area/base_geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/base_geometry/floor2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-shape = SubResource("BoxShape3D_036lt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/base_geometry/floor2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.25)
-mesh = SubResource("BoxMesh_s6ikc")
-skeleton = NodePath("../CollisionShape3D")
-
-[node name="wall3" type="StaticBody3D" parent="rooms/start_room/movement_area/base_geometry"]
+[node name="wall3" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 6, 24)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/base_geometry/wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, -3.5, -3)
 shape = SubResource("BoxShape3D_vlwwk")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="rooms/start_room/movement_area/base_geometry/wall3"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -4.5, -3)
 shape = SubResource("BoxShape3D_vlwwk")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="rooms/start_room/movement_area/base_geometry/wall3"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -1.75, -3)
 shape = SubResource("BoxShape3D_qc43e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/base_geometry/wall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, -3.5, -3)
 mesh = SubResource("BoxMesh_jjf0l")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="rooms/start_room/movement_area/base_geometry/wall3"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -3.5, -3)
 mesh = SubResource("BoxMesh_jjf0l")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="rooms/start_room/movement_area/base_geometry/wall3"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -1.75, -3)
 mesh = SubResource("BoxMesh_vj1s7")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="crouch_barrier" type="StaticBody3D" parent="rooms/start_room/movement_area/base_geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 31)
+[node name="crouch_barrier" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/base_geometry/crouch_barrier"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/crouch_barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 27)
 shape = SubResource("BoxShape3D_y8ti4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/base_geometry/crouch_barrier"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/crouch_barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 27)
 mesh = SubResource("BoxMesh_o5wbv")
 
-[node name="wall4" type="CSGBox3D" parent="rooms/start_room/movement_area/base_geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 59)
-size = Vector3(1, 5, 14)
+[node name="wall4" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 71)
+use_collision = true
+size = Vector3(1, 5, 38)
 material = SubResource("StandardMaterial3D_nlxio")
 
-[node name="wall5" type="CSGBox3D" parent="rooms/start_room/movement_area/base_geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 59)
-size = Vector3(1, 5, 14)
+[node name="wall5" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 71)
+use_collision = true
+size = Vector3(1, 5, 38)
 material = SubResource("StandardMaterial3D_nlxio")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="rooms/start_room/movement_area/base_geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 59)
-size = Vector3(4, 1, 14)
+[node name="roof" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 71)
+use_collision = true
+size = Vector3(4, 1, 38)
 material = SubResource("StandardMaterial3D_lgrt7")
 
-[node name="fall_pit" type="Node3D" parent="rooms/start_room/movement_area"]
+[node name="fall_pit" type="Node3D" parent="rooms/start_room/tunnel_area/base_geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
 
-[node name="wall1" type="StaticBody3D" parent="rooms/start_room/movement_area/fall_pit"]
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 2.5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/fall_pit/wall1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall1"]
 mesh = SubResource("BoxMesh_036lt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/fall_pit/wall1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall1"]
 shape = SubResource("ConcavePolygonShape3D_nlxio")
 
-[node name="wall2" type="StaticBody3D" parent="rooms/start_room/movement_area/fall_pit"]
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, -3.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/fall_pit/wall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall2"]
 mesh = SubResource("BoxMesh_036lt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/fall_pit/wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall2"]
 shape = SubResource("ConcavePolygonShape3D_nlxio")
 
-[node name="wall3" type="StaticBody3D" parent="rooms/start_room/movement_area/fall_pit"]
+[node name="wall3" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, -2.5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/fall_pit/wall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall3"]
 mesh = SubResource("BoxMesh_036lt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/fall_pit/wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall3"]
 shape = SubResource("ConcavePolygonShape3D_nlxio")
 
-[node name="wall4" type="StaticBody3D" parent="rooms/start_room/movement_area/fall_pit"]
+[node name="wall4" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -2.5, -3.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/fall_pit/wall4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall4"]
 mesh = SubResource("BoxMesh_036lt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/fall_pit/wall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall4"]
 shape = SubResource("ConcavePolygonShape3D_nlxio")
 
-[node name="floor" type="Node3D" parent="rooms/start_room/movement_area/fall_pit"]
+[node name="floor" type="Node3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/fall_pit/floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/floor"]
 mesh = SubResource("BoxMesh_dv7nr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/fall_pit/floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/floor"]
 shape = SubResource("ConcavePolygonShape3D_036lt")
 
-[node name="door2" type="Node3D" parent="rooms/start_room/movement_area"]
+[node name="floor2" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63.5)
+use_collision = true
+size = Vector3(6, 1, 51)
+material = SubResource("StandardMaterial3D_036lt")
+
+[node name="door2" type="Node3D" parent="rooms/start_room/tunnel_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 51)
 
-[node name="door" parent="rooms/start_room/movement_area/door2" instance=ExtResource("12_t3lbx")]
+[node name="door" parent="rooms/start_room/tunnel_area/door2" instance=ExtResource("12_t3lbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.674999)
 
-[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/movement_area/door2/door"]
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/tunnel_area/door2/door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door2/door/door_close_trigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/door/door_close_trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_o5wbv")
 
-[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/movement_area/door2/door"]
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/tunnel_area/door2/door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door2/door/door_open_trigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/door/door_open_trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_o5wbv")
 
-[node name="wall1" type="StaticBody3D" parent="rooms/start_room/movement_area/door2"]
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/tunnel_area/door2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door2/wall1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/wall1"]
 shape = SubResource("BoxShape3D_s6ikc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door2/wall1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/door2/wall1"]
 mesh = SubResource("BoxMesh_nlxio")
 
-[node name="wall2" type="StaticBody3D" parent="rooms/start_room/movement_area/door2"]
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/tunnel_area/door2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door2/wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/wall2"]
 shape = SubResource("BoxShape3D_s6ikc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door2/wall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/door2/wall2"]
 mesh = SubResource("BoxMesh_nlxio")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="rooms/start_room/movement_area/door2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="rooms/start_room/tunnel_area/door2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0.5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door2/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/door2/StaticBody3D"]
 mesh = SubResource("BoxMesh_lgrt7")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_4i3tx")
+
+[node name="movement_area" type="Node3D" parent="rooms/start_room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 
 [node name="door3" type="Node3D" parent="rooms/start_room/movement_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 100)
@@ -835,6 +846,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("12_036lt")
 theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="stage/base/player_reset/player_catcher" to="." method="_on_player_catcher_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_open_trigger" to="." method="_on_door_open_trigger_body_entered"]
@@ -844,8 +856,10 @@ theme_override_font_sizes/font_size = 90
 [connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/checkpoint_1" to="." method="_on_checkpoint_1_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/player_jump_fail" to="." method="_on_player_jump_fail_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/jump_success" to="." method="_on_jump_success_body_entered"]
-[connection signal="body_entered" from="rooms/start_room/movement_area/door2/door/door_close_trigger" to="rooms/start_room/movement_area/door2/door" method="_on_door_close_trigger_body_entered"]
-[connection signal="body_entered" from="rooms/start_room/movement_area/door2/door/door_open_trigger" to="rooms/start_room/movement_area/door2/door" method="_on_door_open_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/crouch_tutorial" to="." method="_on_crouch_tutorial_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/shift_tutorial" to="." method="_on_shift_tutorial_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/door2/door/door_close_trigger" to="rooms/start_room/tunnel_area/door2/door" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/door2/door/door_open_trigger" to="rooms/start_room/tunnel_area/door2/door" method="_on_door_open_trigger_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/movement_area/door3/door/door_close_trigger" to="rooms/start_room/movement_area/door3/door" method="_on_door_close_trigger_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/movement_area/door3/door/door_open_trigger" to="rooms/start_room/movement_area/door3/door" method="_on_door_open_trigger_body_entered"]
 [connection signal="body_entered" from="rooms/start_room/movement_area/door1/door/door_close_trigger" to="rooms/start_room/movement_area/door1/door" method="_on_door_close_trigger_body_entered"]

@@ -10,10 +10,9 @@ var broken = false
 
 func _on_player_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("character") && !broken:
-		broken = true
 		var player_facing = body.get_global_transform().basis.z
 		if body.sliding == true && (player_facing.dot($player_detector/detector_collision.get_global_transform().basis.z) > .9):
-			print("touched")
+			broken = true
 			top_r_piece.freeze = false
 			top_l_piece.freeze = false
 			bot_r_piece.freeze = false

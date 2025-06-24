@@ -351,12 +351,16 @@ func _physics_process(delta: float) -> void:
 	if (Input.is_action_just_pressed("jump") || jump_buffer) and ((((double_jump || coyote) && !wall_running)) || is_on_floor()) && !noclip:
 		if is_on_floor() || jump_buffer || coyote:
 			double_jump = true
+			velocity.y = jump_velocity
 		else:
 			double_jump = false
 			double_jump_sound.play()
+			if velocity.y <= 0:
+				velocity.y = jump_velocity
+			else:
+				velocity.y += jump_velocity
 		last_velo = target_speed
 		last_velo += .5
-		velocity.y = jump_velocity
 		direction += get_floor_normal() / 2
 		slide_sound.stop()
 		animation_player.play("jump")

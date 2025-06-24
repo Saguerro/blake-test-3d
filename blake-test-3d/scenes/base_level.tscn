@@ -47,7 +47,7 @@ pixel_size = 0.586
 billboard = 1
 texture = ExtResource("4_oox4p")
 
-[node name="UserInterface" parent="." instance=ExtResource("6_3aqo6")]
+[node name="user_interface" parent="." instance=ExtResource("6_3aqo6")]
 process_mode = 3
 
 [node name="stage" type="Node3D" parent="."]
