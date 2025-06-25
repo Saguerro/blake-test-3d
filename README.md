@@ -4,4 +4,4 @@ Make sure to download the correct file for your device.
 
 Simply unpack both files into the same folder and run the executable (on windows). 
 
-Not sure about Linux yet but I will update when I know how that works.
+Linux version is very unstable so plese let me know what happens when/if you try to get it to run.
