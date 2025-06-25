@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d1wejnsxpvgvl"]
 
-[ext_resource type="Script" uid="uid://cdths70m83v82" path="res://gun_pickup.gd" id="1_g12hn"]
+[ext_resource type="Script" uid="uid://cdths70m83v82" path="res://scripts/gun_pickup.gd" id="1_g12hn"]
 [ext_resource type="PackedScene" uid="uid://c1k515kcx88vp" path="res://weapon_manager/crowbar/deagle.glb" id="2_fel3n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xavdt"]

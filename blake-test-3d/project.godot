@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://global.gd"
-AltSounds="*res://alt_sounds.gd"
-MouseSensitivity="*res://mouse_sensitivity.gd"
+Global="*res://scripts/global.gd"
+AltSounds="*res://scripts/alt_sounds.gd"
+MouseSensitivity="*res://scripts/mouse_sensitivity.gd"
 
 [display]
 
