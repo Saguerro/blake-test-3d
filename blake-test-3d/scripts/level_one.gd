@@ -2,6 +2,7 @@ extends "res://scripts/base_level.gd"
 
 @onready var message = $player_message
 @onready var user_interface = $user_interface
+@onready var door1 = $rooms/start_room/tunnel_area/small_door_down
 
 func _ready():
 	match(user_interface.load_level_progress(level_name)):
@@ -43,9 +44,9 @@ func _on_jump_success_body_entered(body: Node3D) -> void:
 
 func _on_crouch_tutorial_body_entered(body: Node3D) -> void:
 	if body.is_in_group("character"):
-		tutorial_message("Press C to Crouch")
+		tutorial_message("Hold C to Crouch")
 
 
 func _on_shift_tutorial_body_entered(body: Node3D) -> void:
 	if body.is_in_group("character"):
-		tutorial_message("Press SHIFT to Sprint")
+		tutorial_message("Hold SHIFT to Sprint")
