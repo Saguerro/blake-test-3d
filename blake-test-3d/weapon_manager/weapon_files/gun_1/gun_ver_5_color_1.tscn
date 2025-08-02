@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bavmpxq71w43c"]
+
+[node name="gun-ver-5-color-1"]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(0.105, 0, 0, 0, 0.101881, -0.0254018, 0, 0.0254018, 0.101881, -2.90256, 2.50337, -0.779212)

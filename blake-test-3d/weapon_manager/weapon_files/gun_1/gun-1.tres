@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://k07duuewsjft"]
+
+[ext_resource type="Script" uid="uid://o85kbg30q7tr" path="res://weapon_manager/weapon_resource.gd" id="1_77auj"]
+[ext_resource type="AudioStream" uid="uid://bgtwdbut2apxk" path="res://assets/sounds/gun_reload.wav" id="1_mr5r0"]
+[ext_resource type="AudioStream" uid="uid://cn2pvdfh7qovu" path="res://assets/sounds/pistol_gunshot.wav" id="2_mr5r0"]
+[ext_resource type="PackedScene" uid="uid://f4k1or66eong" path="res://weapon_manager/weapon_files/gun_1/gun-ver-6.5.glb" id="4_mr5r0"]
+
+[resource]
+script = ExtResource("1_77auj")
+view_model = ExtResource("4_mr5r0")
+view_model_pos = Vector3(-0.12242, -0.758664, 0.198788)
+view_model_rot = Vector3(-0.0537243, -1.6403, 0.000704527)
+view_model_scale = Vector3(0.1, 0.1, 0.1)
+view_idle_anim = "Idle"
+view_equip_anim = ""
+view_shoot_anim = "Shoot"
+view_reload_anim = "Reload"
+shoot_sound = ExtResource("2_mr5r0")
+reload_sound = ExtResource("1_mr5r0")
+damage = 50.0
+current_ammo = 10.0
+magazine_capacity = 10.0
+reserve_ammo = 180.0
+max_reserve_ammo = 180.0
+auto_fire = false
+max_fire_rate_ms = 250.0
+metadata/_custom_type_script = "uid://o85kbg30q7tr"

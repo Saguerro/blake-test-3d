@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://odq5boucrci3"]
+
+[node name="gun-ver-5-color-1-anim-1"]
+
+[node name="Muzzle" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8951, 4.84327, -4.47017)

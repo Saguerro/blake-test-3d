@@ -3,7 +3,7 @@ extends Node3D
 
 @onready var hud_timer = $HUD/TrialTimer/CurrentTime
 @onready var hud_best_time = $HUD/TrialTimer/BestTime
-@onready var deagle_instance = preload("res://weapon_manager/crowbar/deagle.tres").duplicate()
+@onready var deagle_instance = preload("res://weapon_manager/weapon_files/gun_1/gun-1.tres").duplicate()
 
 var trial_timer := 0.0
 var trial_running := false

@@ -21,7 +21,6 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_gj75q"]
 material = SubResource("StandardMaterial3D_ya6gs")
-size = Vector2(0.2, 0.2)
 
 [node name="MuzzleFlash" type="GPUParticles3D"]
 emitting = false

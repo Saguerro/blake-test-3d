@@ -40,10 +40,23 @@ func update_weapon_model():
 	if current_weapon == null and current_weapon_view_model != null:
 		current_weapon_view_model.queue_free()
 
-func play_sound(sound : AudioStream):
-	#audio_stream_player.get_stream_playback().play_stream(sound)
-	print("stream id: " + str(audio_stream_player.get_stream_playback().play_stream(sound)))
+func play_sound(sound : AudioStream, name):
+	var sound_stream = AudioStreamPlayer3D.new()
+	if !has_node(name):
+		sound_stream.name = name
+	self.add_child(sound_stream)
+	sound_stream.stream = sound
+	sound_stream.play()
+	sound_stream.finished.connect(on_sound_finished.bind(sound_stream))
+	#print("stream id: " + str(audio_stream_player.get_stream_playback().play_stream(sound)))
 	#audio_stream_player.play()
+
+func on_sound_finished(sound_stream : AudioStreamPlayer3D):
+	sound_stream.queue_free()
+
+func stop_sound(name : String):
+	if get_node(name) != null:
+		get_node(name).queue_free()
 
 func stop_sounds():
 	audio_stream_player.stop()
@@ -99,7 +112,7 @@ func make_bullet_trail(target_pos : Vector3):
 		return
 	var muzzle = current_weapon_view_model_muzzle
 	var bullet_dir = (target_pos - muzzle.global_position).normalized()
-	var start_pos = muzzle.global_position + bullet_dir*0.25
+	var start_pos = muzzle.global_position + bullet_dir * 0.25
 	if (target_pos - start_pos).length() > 3.0:
 		var bullet_tracer = preload("res://weapon_manager/bullet_tracer.tscn").instantiate()
 		player.add_sibling(bullet_tracer)

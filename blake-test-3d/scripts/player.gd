@@ -80,6 +80,7 @@ var wish_dir := Vector3.ZERO
 var cam_aligned_wish_dir := Vector3.ZERO
 var noclip_speed_mult := 2.0
 var noclip := false
+var wall_slide_tilt := 720
 #var was_on_ground = false
 
 #input vars
@@ -189,10 +190,10 @@ func wall_run(delta):
 			print(str(dot))
 			if dot > .2:
 				print("1")
-				eyes.rotation.z = lerp((transform.basis * eyes.rotation).z, deg_to_rad(-360), delta / 2)
+				eyes.rotation.z = lerp((transform.basis * eyes.rotation).z, deg_to_rad(-wall_slide_tilt), delta / 2)
 			else:
 				print("2")
-				eyes.rotation.z = lerp((transform.basis * eyes.rotation).z, deg_to_rad(360), delta / 2)
+				eyes.rotation.z = lerp((transform.basis * eyes.rotation).z, deg_to_rad(wall_slide_tilt), delta / 2)
 			if !wall_jump_sound.playing:
 				wall_jump_sound.play()
 			target_speed = 20.0

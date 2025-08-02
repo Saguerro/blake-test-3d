@@ -103,26 +103,31 @@ func reload_pressed():
 	weapon_manager.play_animation(view_reload_anim, reload, cancel_cb)
 	weapon_manager.queue_animation(view_idle_anim)
 	if AltSounds.alt_sounds_on:
-		weapon_manager.play_sound(alt_reload_sound)
+		weapon_manager.play_sound(alt_reload_sound, "reload")
 	else:
-		weapon_manager.play_sound(reload_sound)
+		weapon_manager.play_sound(reload_sound, "reload")
 
 func reload():
 	var can_reload = get_amount_can_reload()
+	print("reload ran")
 	if can_reload <= 0:
+		print("can't reload")
 		return
 	elif magazine_capacity == INF or current_ammo == INF:
+		print("ammo updated")
 		current_ammo = magazine_capacity
 	else:
+		print("reload updated")
 		current_ammo += can_reload
 		reserve_ammo -= can_reload
 
 #shooting logic
 func fire_shot():
+	weapon_manager.stop_sound("reload")
 	if AltSounds.alt_sounds_on:
-		weapon_manager.play_sound(alt_shoot_sound)
+		weapon_manager.play_sound(alt_shoot_sound, "shot")
 	else:
-		weapon_manager.play_sound(shoot_sound)
+		weapon_manager.play_sound(shoot_sound, "shot")
 	weapon_manager.play_animation(view_shoot_anim)
 	weapon_manager.queue_animation(view_idle_anim)
 	
@@ -137,10 +142,11 @@ func fire_shot():
 		var point = raycast.get_collision_point()
 		bullet_target = point
 		BulletDecalPool.spawn_bullet_decal(point, normal, object, raycast.global_basis)
-		if object is RigidBody3D:
-			object.apply_impulse(-normal * 15.0 / object.mass, point - object.global_position)
-		if object.has_method("take_damage"):
-			object.take_damage(self.damage)
+		if !object.is_in_group("character"):
+			if object is RigidBody3D:
+				object.apply_impulse(-normal * 15.0 / object.mass, point - object.global_position)
+			if object.has_method("take_damage"):
+				object.take_damage(self.damage)
 	
 	weapon_manager.show_muzzle_flash()
 	weapon_manager.make_bullet_trail(bullet_target)
