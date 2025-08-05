@@ -15,6 +15,14 @@ extends Resource
 @export var view_shoot_anim : String
 @export var view_reload_anim : String
 
+@export var slide_idle_anim : String
+@export var slide_equip_anim : String
+@export var slide_shoot_anim : String
+@export var slide_reload_anim : String
+
+@export var to_slide_anim : String
+@export var from_slide_anim : String
+
 #sounds
 
 @export var shoot_sound : AudioStream
@@ -41,6 +49,9 @@ extends Resource
 const RAYCAST_DIST : float = 9999 #cant really go farther
 
 var weapon_manager : WeaponManager
+
+#player sliding storage
+var player_sliding := false
 
 #shooting and equip logic
 var trigger_down := false :
@@ -82,8 +93,12 @@ func on_trigger_up():
 	pass
 
 func on_equip():
-	weapon_manager.play_animation(view_equip_anim)
-	weapon_manager.queue_animation(view_idle_anim)
+	if player_sliding:
+		weapon_manager.play_animation(slide_equip_anim)
+		weapon_manager.queue_animation(slide_idle_anim)
+	else:
+		weapon_manager.play_animation(view_equip_anim)
+		weapon_manager.queue_animation(view_idle_anim)
 
 func on_unequip():
 	pass
@@ -94,14 +109,18 @@ func get_amount_can_reload() -> int:
 	return can_reload
 
 func reload_pressed():
-	if view_reload_anim and weapon_manager.get_anim() == view_reload_anim:
+	if (view_reload_anim || slide_reload_anim) and ((weapon_manager.get_anim() == view_reload_anim) || ( weapon_manager.get_anim() == slide_reload_anim)):
 		return
 	if get_amount_can_reload() <= 0:
 		return
 	var cancel_cb = (func(): 
 		weapon_manager.stop_sounds())
-	weapon_manager.play_animation(view_reload_anim, reload, cancel_cb)
-	weapon_manager.queue_animation(view_idle_anim)
+	if player_sliding:
+		weapon_manager.play_animation(slide_reload_anim, reload, cancel_cb)
+		weapon_manager.queue_animation(slide_idle_anim)
+	else:
+		weapon_manager.play_animation(view_reload_anim, reload, cancel_cb)
+		weapon_manager.queue_animation(view_idle_anim)
 	if AltSounds.alt_sounds_on:
 		weapon_manager.play_sound(alt_reload_sound, "reload")
 	else:
@@ -128,8 +147,16 @@ func fire_shot():
 		weapon_manager.play_sound(alt_shoot_sound, "shot")
 	else:
 		weapon_manager.play_sound(shoot_sound, "shot")
-	weapon_manager.play_animation(view_shoot_anim)
-	weapon_manager.queue_animation(view_idle_anim)
+	
+	if player_sliding:
+		weapon_manager.play_animation(slide_shoot_anim)
+	else:
+		weapon_manager.play_animation(view_shoot_anim)
+	
+	if player_sliding:
+		weapon_manager.queue_animation(slide_idle_anim)
+	else:
+		weapon_manager.queue_animation(view_idle_anim)
 	
 	var raycast = weapon_manager.bullet_raycast
 	raycast.target_position = Vector3(0,0,-abs(RAYCAST_DIST))
@@ -153,3 +180,13 @@ func fire_shot():
 	
 	last_fire_time = Time.get_ticks_msec()
 	current_ammo -= 1
+
+func started_sliding():
+	weapon_manager.queue_animation(to_slide_anim)
+	weapon_manager.queue_animation(slide_idle_anim)
+	player_sliding = true
+
+func stopped_sliding():
+	weapon_manager.queue_animation(from_slide_anim)
+	weapon_manager.queue_animation(view_idle_anim)
+	player_sliding = false

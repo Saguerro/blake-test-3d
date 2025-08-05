@@ -106,21 +106,21 @@ func _on_resolution_menu_item_selected(index: int) -> void:
 
 func _on_level_one_button_pressed() -> void:
 	level_select.hide()
-	load_level("res://scenes/level_one.tscn")
+	load_level("res://scenes/level_scenes/level_one.tscn")
 
 func _on_test_plane_button_pressed() -> void:
 	level_select.hide()
-	load_level("res://scenes/test_plane.tscn")
+	load_level("res://scenes/level_scenes/test_plane.tscn")
 
 func _on_blake_test_3d_button_pressed() -> void:
 	level_select.hide()
-	load_level("res://scenes/blake_test_3d.tscn")
+	load_level("res://scenes/level_scenes/blake_test_3d.tscn")
 	#loaded_level = preload("res://scenes/blake_test_3d.tscn").instantiate()
 	#load_level.emit(loaded_level)
 
 func _on_base_level_button_pressed() -> void:
 	level_select.hide()
-	load_level("res://scenes/base_level.tscn")
+	load_level("res://scenes/level_scenes/base_level.tscn")
 
 func _on_level_select_back_button_pressed() -> void:
 	level_select.hide()
@@ -184,8 +184,12 @@ func load_level_progress(current_level):
 		print("config file load error")
 		return
 	print(current_level)
-	print(progress.get_value("Level Checkpoint", current_level))
-	return progress.get_value("Level Checkpoint", current_level)
+	if progress.has_section("Level Checkpoint"):
+		print(progress.get_value("Level Checkpoint", current_level))
+		return progress.get_value("Level Checkpoint", current_level)
+	else:
+		print("level has no current progress")
+		return
 
 #saves level progress
 func save_level_progress(current_level, current_checkpoint):
@@ -203,5 +207,6 @@ func clear_level_progress():
 		print("config file load error")
 		return
 	
-	progress.erase_section("Level Checkpoint")
+	if progress.has_section("Level Checkpoint"):
+		progress.erase_section("Level Checkpoint")
 	progress.save("user://progress.cfg")

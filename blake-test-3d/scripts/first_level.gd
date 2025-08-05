@@ -7,7 +7,7 @@ func _input(event):
 	super(event)
 	if Input.is_action_just_pressed("equip") && gun_picked_up:
 		if $player/weapon_manager.current_weapon == null:
-			$player/weapon_manager.current_weapon = preload("res://weapon_manager/crowbar/deagle.tres").duplicate()
+			$player/weapon_manager.current_weapon = preload("res://weapon_manager/weapon_files/gun_1/gun-1.tres").duplicate()
 			$player/weapon_manager.update_weapon_model()
 		else:
 			print($player/weapon_manager.current_weapon)
@@ -28,7 +28,7 @@ func _physics_process(delta):
 
 func _on_gun_pickup_player_entered() -> void:
 	gun_picked_up = true
-	$player/weapon_manager.current_weapon = preload("res://weapon_manager/crowbar/deagle.tres").duplicate()
+	$player/weapon_manager.current_weapon = preload("res://weapon_manager/weapon_files/gun_1/gun-1.tres").duplicate()
 	$player/weapon_manager.update_weapon_model()
 
 

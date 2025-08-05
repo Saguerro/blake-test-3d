@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://k07duuewsjft"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=6 format=3 uid="uid://k07duuewsjft"]
 
 [ext_resource type="Script" uid="uid://o85kbg30q7tr" path="res://weapon_manager/weapon_resource.gd" id="1_77auj"]
-[ext_resource type="AudioStream" uid="uid://bgtwdbut2apxk" path="res://assets/sounds/gun_reload.wav" id="1_mr5r0"]
-[ext_resource type="AudioStream" uid="uid://cn2pvdfh7qovu" path="res://assets/sounds/pistol_gunshot.wav" id="2_mr5r0"]
-[ext_resource type="PackedScene" uid="uid://f4k1or66eong" path="res://weapon_manager/weapon_files/gun_1/gun-ver-6.5.glb" id="4_mr5r0"]
+[ext_resource type="AudioStream" uid="uid://d330hqhbu2iwn" path="res://assets/sounds/gun_reload_bitcrushed.wav" id="1_mr5r0"]
+[ext_resource type="AudioStream" uid="uid://bdk1x63a10810" path="res://assets/sounds/pistol_gunshot_bitcrushed.wav" id="3_5rdwn"]
+[ext_resource type="AudioStream" uid="uid://d5kw7ubu5da2" path="res://assets/sounds/gun_unholster_bitcrushed.wav" id="4_5rdwn"]
+[ext_resource type="PackedScene" uid="uid://bu7a2oute81dr" path="res://weapon_manager/weapon_files/gun_1/gun-ver-6-anim-3.glb" id="4_mr5r0"]
 
 [resource]
 script = ExtResource("1_77auj")
@@ -12,11 +13,18 @@ view_model_pos = Vector3(-0.12242, -0.758664, 0.198788)
 view_model_rot = Vector3(-0.0537243, -1.6403, 0.000704527)
 view_model_scale = Vector3(0.1, 0.1, 0.1)
 view_idle_anim = "Idle"
-view_equip_anim = ""
+view_equip_anim = "Unholster"
 view_shoot_anim = "Shoot"
 view_reload_anim = "Reload"
-shoot_sound = ExtResource("2_mr5r0")
+slide_idle_anim = "Slide_Idle"
+slide_equip_anim = "Slide_Unholster"
+slide_shoot_anim = "Slide_Shoot"
+slide_reload_anim = "Slide_Reload"
+to_slide_anim = "ToSlide"
+from_slide_anim = "FromSlide"
+shoot_sound = ExtResource("3_5rdwn")
 reload_sound = ExtResource("1_mr5r0")
+unholster_sound = ExtResource("4_5rdwn")
 damage = 50.0
 current_ammo = 10.0
 magazine_capacity = 10.0

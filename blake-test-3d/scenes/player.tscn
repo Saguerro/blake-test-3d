@@ -1,13 +1,13 @@
 [gd_scene load_steps=27 format=3 uid="uid://dimok4om3qkj"]
 
 [ext_resource type="Script" uid="uid://duqh23sls7h7c" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="AudioStream" uid="uid://dysn4nnu03h3s" path="res://assets/sounds/footstep1.wav" id="2_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://bwtk13gk7g31q" path="res://assets/sounds/footstep1_bitcrushed.wav" id="2_f1ej7"]
 [ext_resource type="Script" uid="uid://n0gphdob64pp" path="res://scripts/reticle.gd" id="2_smehm"]
-[ext_resource type="AudioStream" uid="uid://biskqbmwmyckq" path="res://assets/sounds/footstep2.wav" id="3_tuyoq"]
-[ext_resource type="AudioStream" uid="uid://b2hicdtvcnkb8" path="res://assets/sounds/footstep3.wav" id="4_fjrip"]
-[ext_resource type="AudioStream" uid="uid://btjb4epldk81t" path="res://assets/sounds/footstep4.wav" id="5_smehm"]
-[ext_resource type="AudioStream" uid="uid://q15edd5o1mck" path="res://assets/sounds/slide.wav" id="6_tuyoq"]
-[ext_resource type="AudioStream" uid="uid://dtnkyab2bn4fe" path="res://assets/sounds/double_jump.wav" id="8_smehm"]
+[ext_resource type="AudioStream" uid="uid://bvq0q1h4j4cx4" path="res://assets/sounds/footstep2_bitcrushed.wav" id="3_oprun"]
+[ext_resource type="AudioStream" uid="uid://cl4lkw2phyjhc" path="res://assets/sounds/footstep3_bitcrushed.wav" id="4_a8ls1"]
+[ext_resource type="AudioStream" uid="uid://c7jib3rdyweb7" path="res://assets/sounds/footstep4_bitcrushed.wav" id="5_qfm1y"]
+[ext_resource type="AudioStream" uid="uid://dk242yqhps3xd" path="res://assets/sounds/slide_bitcrushed.wav" id="6_f1ej7"]
+[ext_resource type="AudioStream" uid="uid://c5yc8dwxhbj7o" path="res://assets/sounds/double_jump_bitcrushed.wav" id="7_f1ej7"]
 [ext_resource type="Theme" uid="uid://wxj7k3q6b73l" path="res://ui/themes/debug.tres" id="9_y4r1p"]
 [ext_resource type="Script" uid="uid://b7s4dkbgpqtwf" path="res://scripts/debug.gd" id="10_d2wvv"]
 [ext_resource type="Script" uid="uid://druljkwj8plt6" path="res://scripts/state_machine.gd" id="11_3v2ag"]
@@ -141,16 +141,16 @@ _data = {
 playback_mode = 1
 random_pitch = 1.2
 streams_count = 4
-stream_0/stream = ExtResource("2_qlg0r")
-stream_1/stream = ExtResource("3_tuyoq")
-stream_2/stream = ExtResource("4_fjrip")
-stream_3/stream = ExtResource("5_smehm")
+stream_0/stream = ExtResource("2_f1ej7")
+stream_1/stream = ExtResource("3_oprun")
+stream_2/stream = ExtResource("4_a8ls1")
+stream_3/stream = ExtResource("5_qfm1y")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fjrip"]
 random_pitch = 1.25
 random_volume_offset_db = 2.0
 streams_count = 1
-stream_0/stream = ExtResource("6_tuyoq")
+stream_0/stream = ExtResource("6_f1ej7")
 
 [sub_resource type="GDScript" id="GDScript_jej6c"]
 script/source = "class_name walking_player_state
@@ -313,7 +313,7 @@ stream = SubResource("AudioStreamRandomizer_fjrip")
 stream = SubResource("AudioStreamRandomizer_fjrip")
 
 [node name="DoubleJump" type="AudioStreamPlayer3D" parent="Sounds"]
-stream = ExtResource("8_smehm")
+stream = ExtResource("7_f1ej7")
 volume_db = 45.714
 pitch_scale = 1.71
 
@@ -421,6 +421,8 @@ grow_vertical = 0
 theme = ExtResource("15_oprun")
 script = SubResource("GDScript_oprun")
 
+[connection signal="started_sliding" from="." to="weapon_manager" method="_on_player_started_sliding"]
+[connection signal="stopped_sliding" from="." to="weapon_manager" method="_on_player_stopped_sliding"]
 [connection signal="timeout" from="Timers/WallRunTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timers/CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="Timers/JumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]

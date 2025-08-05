@@ -1,0 +1,866 @@
+[gd_scene load_steps=64 format=3 uid="uid://b7y04xusi7603"]
+
+[ext_resource type="Script" uid="uid://ca54wbnki3et5" path="res://scripts/level_one.gd" id="1_s6ikc"]
+[ext_resource type="PackedScene" uid="uid://dimok4om3qkj" path="res://scenes/player.tscn" id="2_nlxio"]
+[ext_resource type="Texture2D" uid="uid://cnp01btkkm1ml" path="res://assets/textures/face.png" id="3_xrbqg"]
+[ext_resource type="PackedScene" uid="uid://bnh1ieg1ll1tl" path="res://scenes/user_interface.tscn" id="4_dv7nr"]
+[ext_resource type="Texture2D" uid="uid://bivpderkyrxej" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="5_lgrt7"]
+[ext_resource type="Texture2D" uid="uid://cxgcn8emualww" path="res://assets/textures/dev/grids/Dark/texture_05.png" id="6_036lt"]
+[ext_resource type="PackedScene" uid="uid://uitpo6e5gdfc" path="res://scenes/small_door_down.tscn" id="7_w4tp6"]
+[ext_resource type="Script" uid="uid://ce5dcmsuijrpi" path="res://scripts/small_area_door_down.gd" id="8_unjau"]
+[ext_resource type="Texture2D" uid="uid://b03m8y0h30bki" path="res://assets/textures/dev/grids/Orange/texture_05.png" id="9_itxlw"]
+[ext_resource type="Theme" uid="uid://d2ljv58wchtxi" path="res://ui/themes/menu.tres" id="12_036lt"]
+[ext_resource type="Texture2D" uid="uid://bcp6rte8a5kml" path="res://assets/textures/dev/grids/Light/texture_07.png" id="12_nlxio"]
+[ext_resource type="PackedScene" uid="uid://dw1l72caefatq" path="res://scenes/area_door_down.tscn" id="12_t3lbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
+size = Vector3(250, 1, 400)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bss38"]
+panorama = ExtResource("5_lgrt7")
+
+[sub_resource type="Sky" id="Sky_nlxio"]
+sky_material = SubResource("PanoramaSkyMaterial_bss38")
+
+[sub_resource type="Environment" id="Environment_qn3nj"]
+background_mode = 2
+sky = SubResource("Sky_nlxio")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlct4"]
+resource_local_to_scene = true
+size = Vector3(6, 1, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrbqg"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_u6ue0"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xrbqg")
+size = Vector3(6, 1, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fem2g"]
+resource_local_to_scene = true
+size = Vector3(1, 6, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_31kg2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xrbqg")
+size = Vector3(1, 14, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31kg2"]
+resource_local_to_scene = true
+size = Vector3(6, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6s1ea"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xrbqg")
+size = Vector3(6, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vj1s7"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjf0l"]
+size = Vector3(2, 2.5, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrbqg"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dv7nr"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgrt7"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_036lt"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6s1ea"]
+resource_local_to_scene = true
+size = Vector3(6, 1, 12.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w40hx"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xrbqg")
+size = Vector3(30, 1, 12.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vlwwk"]
+resource_local_to_scene = true
+size = Vector3(1, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qc43e"]
+resource_local_to_scene = true
+size = Vector3(2, 2.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjf0l"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xrbqg")
+size = Vector3(1, 4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vj1s7"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_xrbqg")
+size = Vector3(2, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y8ti4"]
+size = Vector3(4, 2.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dv7nr"]
+albedo_texture = ExtResource("9_itxlw")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5wbv"]
+material = SubResource("StandardMaterial3D_dv7nr")
+size = Vector3(4, 2.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlxio"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgrt7"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4tp6"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_036lt"]
+material = SubResource("StandardMaterial3D_w4tp6")
+size = Vector3(4, 6, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nlxio"]
+data = PackedVector3Array(-2, 3, 0.5, 2, 3, 0.5, -2, -3, 0.5, 2, 3, 0.5, 2, -3, 0.5, -2, -3, 0.5, 2, 3, -0.5, -2, 3, -0.5, 2, -3, -0.5, -2, 3, -0.5, -2, -3, -0.5, 2, -3, -0.5, 2, 3, 0.5, 2, 3, -0.5, 2, -3, 0.5, 2, 3, -0.5, 2, -3, -0.5, 2, -3, 0.5, -2, 3, -0.5, -2, 3, 0.5, -2, -3, -0.5, -2, 3, 0.5, -2, -3, 0.5, -2, -3, -0.5, 2, 3, 0.5, -2, 3, 0.5, 2, 3, -0.5, -2, 3, 0.5, -2, 3, -0.5, 2, 3, -0.5, -2, -3, 0.5, 2, -3, 0.5, -2, -3, -0.5, 2, -3, 0.5, 2, -3, -0.5, -2, -3, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfeen"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_dv7nr"]
+material = SubResource("StandardMaterial3D_vfeen")
+size = Vector3(4, 1, 6)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_036lt"]
+data = PackedVector3Array(-2, 0.5, 3, 2, 0.5, 3, -2, -0.5, 3, 2, 0.5, 3, 2, -0.5, 3, -2, -0.5, 3, 2, 0.5, -3, -2, 0.5, -3, 2, -0.5, -3, -2, 0.5, -3, -2, -0.5, -3, 2, -0.5, -3, 2, 0.5, 3, 2, 0.5, -3, 2, -0.5, 3, 2, 0.5, -3, 2, -0.5, -3, 2, -0.5, 3, -2, 0.5, -3, -2, 0.5, 3, -2, -0.5, -3, -2, 0.5, 3, -2, -0.5, 3, -2, -0.5, -3, 2, 0.5, 3, -2, 0.5, 3, 2, 0.5, -3, -2, 0.5, 3, -2, 0.5, -3, 2, 0.5, -3, -2, -0.5, 3, 2, -0.5, 3, -2, -0.5, -3, 2, -0.5, 3, 2, -0.5, -3, -2, -0.5, -3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_036lt"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5wbv"]
+size = Vector3(2, 2.5, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6ikc"]
+size = Vector3(1, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3lbx"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_nlxio"]
+material = SubResource("StandardMaterial3D_t3lbx")
+size = Vector3(1, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilbkt"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lgrt7"]
+material = SubResource("StandardMaterial3D_ilbkt")
+size = Vector3(2, 1.5, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4i3tx"]
+data = PackedVector3Array(-1, 0.75, 0.5, 1, 0.75, 0.5, -1, -0.75, 0.5, 1, 0.75, 0.5, 1, -0.75, 0.5, -1, -0.75, 0.5, 1, 0.75, -0.5, -1, 0.75, -0.5, 1, -0.75, -0.5, -1, 0.75, -0.5, -1, -0.75, -0.5, 1, -0.75, -0.5, 1, 0.75, 0.5, 1, 0.75, -0.5, 1, -0.75, 0.5, 1, 0.75, -0.5, 1, -0.75, -0.5, 1, -0.75, 0.5, -1, 0.75, -0.5, -1, 0.75, 0.5, -1, -0.75, -0.5, -1, 0.75, 0.5, -1, -0.75, 0.5, -1, -0.75, -0.5, 1, 0.75, 0.5, -1, 0.75, 0.5, 1, 0.75, -0.5, -1, 0.75, 0.5, -1, 0.75, -0.5, 1, 0.75, -0.5, -1, -0.75, 0.5, 1, -0.75, 0.5, -1, -0.75, -0.5, 1, -0.75, 0.5, 1, -0.75, -0.5, -1, -0.75, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nlxio"]
+size = Vector3(12, 0.25, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i3tx"]
+albedo_texture = ExtResource("6_036lt")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unjau"]
+albedo_texture = ExtResource("12_nlxio")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itxlw"]
+albedo_texture = ExtResource("12_nlxio")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqtnr"]
+albedo_texture = ExtResource("9_itxlw")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m65uy"]
+albedo_texture = ExtResource("9_itxlw")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_unjau"]
+material = SubResource("StandardMaterial3D_m65uy")
+left_to_right = 0.0
+size = Vector3(8, 6, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o5wbv"]
+data = PackedVector3Array(-4, 3, 1, 4, -3, 1, -4, -3, 1, -4, 3, -1, -4, -3, -1, 4, -3, -1, -4, 3, 1, -4, 3, -1, 4, -3, 1, -4, 3, -1, 4, -3, -1, 4, -3, 1, -4, 3, -1, -4, 3, 1, -4, -3, -1, -4, 3, 1, -4, -3, 1, -4, -3, -1, -4, -3, 1, 4, -3, 1, -4, -3, -1, 4, -3, 1, 4, -3, -1, -4, -3, -1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s6ikc"]
+data = PackedVector3Array(-4, 3, 1, 4, -3, 1, -4, -3, 1, -4, 3, -1, -4, -3, -1, 4, -3, -1, -4, 3, 1, -4, 3, -1, 4, -3, 1, -4, 3, -1, 4, -3, -1, 4, -3, 1, -4, 3, -1, -4, 3, 1, -4, -3, -1, -4, 3, 1, -4, -3, 1, -4, -3, -1, -4, -3, 1, 4, -3, 1, -4, -3, -1, 4, -3, 1, 4, -3, -1, -4, -3, -1)
+
+[node name="world" type="Node3D" groups=["reloadable_level"]]
+script = ExtResource("1_s6ikc")
+level_name = "level_one"
+
+[node name="player" parent="." instance=ExtResource("2_nlxio")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -4)
+
+[node name="world_origin" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1099, 2160.52, 1547)
+pixel_size = 0.586
+billboard = 1
+texture = ExtResource("3_xrbqg")
+
+[node name="user_interface" parent="." instance=ExtResource("4_dv7nr")]
+process_mode = 3
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="base" type="Node3D" parent="stage"]
+
+[node name="player_reset" type="Node3D" parent="stage/base"]
+
+[node name="player_catcher" type="Area3D" parent="stage/base/player_reset"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/base/player_reset/player_catcher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34, 42)
+shape = SubResource("BoxShape3D_o6xl0")
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_qn3nj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="rooms" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -7)
+
+[node name="start_room" type="Node3D" parent="rooms"]
+
+[node name="tunnel_area" type="Node3D" parent="rooms/start_room"]
+
+[node name="floor1" type="StaticBody3D" parent="rooms/start_room/tunnel_area"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.5)
+shape = SubResource("BoxShape3D_rlct4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.78, 0, 0, 12)
+mesh = SubResource("BoxMesh_u6ue0")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="ceiling1" type="StaticBody3D" parent="rooms/start_room/tunnel_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/ceiling1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
+shape = SubResource("BoxShape3D_rlct4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/ceiling1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
+mesh = SubResource("BoxMesh_u6ue0")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/tunnel_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -2, 27.5)
+shape = SubResource("BoxShape3D_fem2g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/wall1"]
+transform = Transform3D(1, 0, 0, 0, 0.405, 0, 0, 0, 1, -5.5, -2, 28)
+mesh = SubResource("BoxMesh_31kg2")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/tunnel_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -2, 28)
+shape = SubResource("BoxShape3D_fem2g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/wall2"]
+transform = Transform3D(1, 0, 0, 0, 0.4, 0, 0, 0, 1, -5.5, -2, 28)
+mesh = SubResource("BoxMesh_31kg2")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="wall3" type="StaticBody3D" parent="rooms/start_room/tunnel_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, -6)
+shape = SubResource("BoxShape3D_31kg2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, -6)
+mesh = SubResource("BoxMesh_6s1ea")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="small_door_down" parent="rooms/start_room/tunnel_area" instance=ExtResource("7_w4tp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 21)
+script = ExtResource("8_unjau")
+
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/tunnel_area/small_door_down"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/small_door_down/door_open_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_vj1s7")
+
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/tunnel_area/small_door_down"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/small_door_down/door_close_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_jjf0l")
+
+[node name="triggers" type="Node3D" parent="rooms/start_room/tunnel_area"]
+
+[node name="checkpoint_1" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 26)
+shape = SubResource("BoxShape3D_xrbqg")
+
+[node name="checkpoint_1_spawnpoint" type="Marker3D" parent="rooms/start_room/tunnel_area/triggers/checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 26)
+
+[node name="player_jump_fail" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.25, 36)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/player_jump_fail"]
+shape = SubResource("BoxShape3D_dv7nr")
+
+[node name="jump_success" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/jump_success"]
+shape = SubResource("BoxShape3D_lgrt7")
+
+[node name="crouch_tutorial" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 55)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/crouch_tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_036lt")
+
+[node name="shift_tutorial" type="Area3D" parent="rooms/start_room/tunnel_area/triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 68)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/triggers/shift_tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_036lt")
+
+[node name="base_geometry" type="Node3D" parent="rooms/start_room/tunnel_area"]
+
+[node name="floor1" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.875)
+shape = SubResource("BoxShape3D_6s1ea")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/floor1"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.875)
+mesh = SubResource("BoxMesh_w40hx")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="wall3" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 6, 24)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, -3.5, -3)
+shape = SubResource("BoxShape3D_vlwwk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -4.5, -3)
+shape = SubResource("BoxShape3D_vlwwk")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -1.75, -3)
+shape = SubResource("BoxShape3D_qc43e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, -3.5, -3)
+mesh = SubResource("BoxMesh_jjf0l")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -3.5, -3)
+mesh = SubResource("BoxMesh_jjf0l")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -1.75, -3)
+mesh = SubResource("BoxMesh_vj1s7")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="crouch_barrier" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/crouch_barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 27)
+shape = SubResource("BoxShape3D_y8ti4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/crouch_barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.25, 27)
+mesh = SubResource("BoxMesh_o5wbv")
+
+[node name="wall4" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 71.5)
+use_collision = true
+size = Vector3(1, 5, 39)
+material = SubResource("StandardMaterial3D_nlxio")
+
+[node name="wall5" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 3, 71.5)
+use_collision = true
+size = Vector3(1, 5, 39)
+material = SubResource("StandardMaterial3D_nlxio")
+
+[node name="roof" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 71.5)
+use_collision = true
+size = Vector3(4, 1, 39)
+material = SubResource("StandardMaterial3D_lgrt7")
+
+[node name="fall_pit" type="Node3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
+
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall1"]
+mesh = SubResource("BoxMesh_036lt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall1"]
+shape = SubResource("ConcavePolygonShape3D_nlxio")
+
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, -3.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall2"]
+mesh = SubResource("BoxMesh_036lt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall2"]
+shape = SubResource("ConcavePolygonShape3D_nlxio")
+
+[node name="wall3" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, -2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall3"]
+mesh = SubResource("BoxMesh_036lt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall3"]
+shape = SubResource("ConcavePolygonShape3D_nlxio")
+
+[node name="wall4" type="StaticBody3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -2.5, -3.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall4"]
+mesh = SubResource("BoxMesh_036lt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/wall4"]
+shape = SubResource("ConcavePolygonShape3D_nlxio")
+
+[node name="floor" type="Node3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/floor"]
+mesh = SubResource("BoxMesh_dv7nr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/base_geometry/fall_pit/floor"]
+shape = SubResource("ConcavePolygonShape3D_036lt")
+
+[node name="floor2" type="CSGBox3D" parent="rooms/start_room/tunnel_area/base_geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63.5)
+use_collision = true
+size = Vector3(6, 1, 51)
+material = SubResource("StandardMaterial3D_036lt")
+
+[node name="door2" type="Node3D" parent="rooms/start_room/tunnel_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 51)
+
+[node name="door" parent="rooms/start_room/tunnel_area/door2" instance=ExtResource("12_t3lbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.674999)
+
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/tunnel_area/door2/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/door/door_close_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_o5wbv")
+
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/tunnel_area/door2/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/door/door_open_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_o5wbv")
+
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/tunnel_area/door2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/wall1"]
+shape = SubResource("BoxShape3D_s6ikc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/door2/wall1"]
+mesh = SubResource("BoxMesh_nlxio")
+
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/tunnel_area/door2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/wall2"]
+shape = SubResource("BoxShape3D_s6ikc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/door2/wall2"]
+mesh = SubResource("BoxMesh_nlxio")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rooms/start_room/tunnel_area/door2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/tunnel_area/door2/StaticBody3D"]
+mesh = SubResource("BoxMesh_lgrt7")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/tunnel_area/door2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4i3tx")
+
+[node name="movement_area" type="Node3D" parent="rooms/start_room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="door3" type="Node3D" parent="rooms/start_room/movement_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 100)
+
+[node name="door" parent="rooms/start_room/movement_area/door3" instance=ExtResource("12_t3lbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.674999)
+
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/movement_area/door3/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door3/door/door_close_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_o5wbv")
+
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/movement_area/door3/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door3/door/door_open_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 1.325)
+shape = SubResource("BoxShape3D_nlxio")
+
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/movement_area/door3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door3/wall1"]
+shape = SubResource("BoxShape3D_s6ikc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door3/wall1"]
+mesh = SubResource("BoxMesh_nlxio")
+
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/movement_area/door3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door3/wall2"]
+shape = SubResource("BoxShape3D_s6ikc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door3/wall2"]
+mesh = SubResource("BoxMesh_nlxio")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rooms/start_room/movement_area/door3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door3/StaticBody3D"]
+mesh = SubResource("BoxMesh_lgrt7")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4i3tx")
+
+[node name="door1" type="Node3D" parent="rooms/start_room/movement_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 65)
+
+[node name="door" parent="rooms/start_room/movement_area/door1" instance=ExtResource("12_t3lbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0.674999)
+
+[node name="door_close_trigger" type="Area3D" parent="rooms/start_room/movement_area/door1/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door1/door/door_close_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_o5wbv")
+
+[node name="door_open_trigger" type="Area3D" parent="rooms/start_room/movement_area/door1/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door1/door/door_open_trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_o5wbv")
+
+[node name="wall1" type="StaticBody3D" parent="rooms/start_room/movement_area/door1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door1/wall1"]
+shape = SubResource("BoxShape3D_s6ikc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door1/wall1"]
+mesh = SubResource("BoxMesh_nlxio")
+
+[node name="wall2" type="StaticBody3D" parent="rooms/start_room/movement_area/door1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door1/wall2"]
+shape = SubResource("BoxShape3D_s6ikc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door1/wall2"]
+mesh = SubResource("BoxMesh_nlxio")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rooms/start_room/movement_area/door1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/door1/StaticBody3D"]
+mesh = SubResource("BoxMesh_lgrt7")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/door1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4i3tx")
+
+[node name="wall_run" type="Node3D" parent="rooms/start_room/movement_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 26)
+use_collision = true
+size = Vector3(20, 1, 50)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -17)
+use_collision = true
+size = Vector3(12, 1, 36)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -17)
+use_collision = true
+size = Vector3(14, 1, 36)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -31)
+use_collision = true
+size = Vector3(8, 1, 2)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+use_collision = true
+size = Vector3(12, 1, 5)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2, 0)
+use_collision = true
+size = Vector3(1, 7, 2)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 0)
+use_collision = true
+size = Vector3(1, 7, 2)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34)
+use_collision = true
+size = Vector3(12, 1, 4)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -4, -17)
+use_collision = true
+size = Vector3(1, 5, 36)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 6, -17)
+use_collision = true
+size = Vector3(1, 1, 36)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 6, -17)
+use_collision = true
+size = Vector3(1, 1, 36)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run" groups=["wallrun"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2, -18)
+use_collision = true
+size = Vector3(1, 7, 34)
+material = SubResource("StandardMaterial3D_unjau")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run" groups=["wallrun"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -18)
+use_collision = true
+size = Vector3(1, 7, 34)
+material = SubResource("StandardMaterial3D_itxlw")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, -4, -17)
+use_collision = true
+size = Vector3(1, 5, 36)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -34.5)
+use_collision = true
+size = Vector3(12, 5, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -3, -33)
+use_collision = true
+size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_rqtnr")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -3, -33)
+use_collision = true
+size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_rqtnr")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2.5, -34.5)
+use_collision = true
+size = Vector3(3, 6, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.5, 0.5)
+use_collision = true
+size = Vector3(4, 6, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.5, 0.5)
+use_collision = true
+size = Vector3(4, 6, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0.5)
+use_collision = true
+size = Vector3(12, 5, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0.5)
+use_collision = true
+size = Vector3(4, 2, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2.5, -34.5)
+use_collision = true
+size = Vector3(3, 6, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, -34.5)
+use_collision = true
+size = Vector3(12, 2, 1)
+material = SubResource("StandardMaterial3D_4i3tx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2, -29)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rooms/start_room/movement_area/wall_run/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, 1)
+mesh = SubResource("PrismMesh_unjau")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/wall_run/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, 1)
+shape = SubResource("ConcavePolygonShape3D_o5wbv")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="rooms/start_room/movement_area/wall_run"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -2, -29)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rooms/start_room/movement_area/wall_run/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, 1)
+mesh = SubResource("PrismMesh_unjau")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rooms/start_room/movement_area/wall_run/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.5, 1)
+shape = SubResource("ConcavePolygonShape3D_s6ikc")
+
+[node name="movement_test" type="Node3D" parent="rooms/start_room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="player_message" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.949
+anchor_right = 0.5
+anchor_bottom = 0.949
+offset_left = -20.0
+offset_top = -255.92
+offset_right = 20.0
+offset_bottom = -144.92
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("12_036lt")
+theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="stage/base/player_reset/player_catcher" to="." method="_on_player_catcher_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_open_trigger" to="." method="_on_door_open_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_open_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_door_open_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_close_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/small_door_down/door_close_trigger" to="rooms/start_room/tunnel_area/small_door_down" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/checkpoint_1" to="." method="_on_checkpoint_1_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/player_jump_fail" to="." method="_on_player_jump_fail_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/jump_success" to="." method="_on_jump_success_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/crouch_tutorial" to="." method="_on_crouch_tutorial_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/triggers/shift_tutorial" to="." method="_on_shift_tutorial_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/door2/door/door_close_trigger" to="rooms/start_room/tunnel_area/door2/door" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/tunnel_area/door2/door/door_open_trigger" to="rooms/start_room/tunnel_area/door2/door" method="_on_door_open_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/movement_area/door3/door/door_close_trigger" to="rooms/start_room/movement_area/door3/door" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/movement_area/door3/door/door_open_trigger" to="rooms/start_room/movement_area/door3/door" method="_on_door_open_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/movement_area/door1/door/door_close_trigger" to="rooms/start_room/movement_area/door1/door" method="_on_door_close_trigger_body_entered"]
+[connection signal="body_entered" from="rooms/start_room/movement_area/door1/door/door_open_trigger" to="rooms/start_room/movement_area/door1/door" method="_on_door_open_trigger_body_entered"]

@@ -31,7 +31,12 @@ func update_weapon_model():
 			apply_clip_and_fov_shader_to_view_model(current_weapon_view_model)
 			if current_weapon_view_model.get_node_or_null("AnimationPlayer"):
 				current_weapon_view_model.get_node_or_null("AnimationPlayer").connect("current_animation_changed", current_animation_changed)
-			play_animation("Unholster")
+			if player.sliding && current_weapon.slide_equip_anim != null:
+				play_animation(current_weapon.slide_equip_anim)
+				play_sound(current_weapon.unholster_sound, "equip")
+			else:
+				play_animation(current_weapon.view_equip_anim)
+				play_sound(current_weapon.unholster_sound, "equip")
 			print("true")
 		current_weapon.is_equipped = true
 		if player.has_method("Update_view_and_world_model_masks"):
@@ -55,7 +60,7 @@ func on_sound_finished(sound_stream : AudioStreamPlayer3D):
 	sound_stream.queue_free()
 
 func stop_sound(name : String):
-	if get_node(name) != null:
+	if get_node_or_null(name) != null:
 		get_node(name).queue_free()
 
 func stop_sounds():
@@ -171,3 +176,13 @@ func apply_clip_and_fov_shader_to_view_model(node3d : Node3D, fov_or_negative_fo
 			var tex_channels = { 0: Vector4(1., 0., 0., 0.), 1: Vector4(0., 1., 0., 0.), 2: Vector4(0., 0., 1., 0.), 3: Vector4(1., 0., 0., 1.), 4: Vector4() }
 			weapon_shader_material.set_shader_parameter("metallic_texture_channel", tex_channels[base_mat.metallic_texture_channel])
 			mesh.surface_set_material(surface_idx, weapon_shader_material)
+
+
+func _on_player_started_sliding() -> void:
+	if current_weapon != null:
+		current_weapon.started_sliding()
+
+
+func _on_player_stopped_sliding() -> void:
+	if current_weapon != null:
+		current_weapon.stopped_sliding()

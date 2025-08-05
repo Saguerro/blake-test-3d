@@ -103,6 +103,10 @@ var throw_power = 25
 var iframes = false
 var health = 100
 
+#signals for animation changes
+signal started_sliding
+signal stopped_sliding
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -264,6 +268,7 @@ func _physics_process(delta: float) -> void:
 		#slide start logic
 		if sprinting and input_dir != Vector2.ZERO:
 			sliding = true
+			started_sliding.emit()
 			slide_timer = slide_timer_max
 			slide_vector = input_dir
 			free_looking = true
@@ -309,7 +314,7 @@ func _physics_process(delta: float) -> void:
 	
 	#handle slide slowdown and ending
 	if sliding:
-		print(str(get_real_velocity().y))
+		#print(str(get_real_velocity().y))
 		if get_real_velocity().y == 0:
 			slide_timer -= delta / 2
 		elif get_real_velocity().y > 0 && is_on_floor():
@@ -317,6 +322,7 @@ func _physics_process(delta: float) -> void:
 		eyes.rotation.z = lerp(eyes.rotation.z, -deg_to_rad(7.0), delta * lerp_speed)
 		if velocity.length() < 5 || !Input.is_action_pressed("crouch"):
 			sliding = false
+			stopped_sliding.emit()
 			free_looking = false
 			slide_sound.stop()
 			print("Slide end")
@@ -356,10 +362,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			double_jump = false
 			double_jump_sound.play()
-			if velocity.y <= 0:
-				velocity.y = jump_velocity
-			else:
-				velocity.y += jump_velocity
+			velocity.y = jump_velocity
 		last_velo = target_speed
 		last_velo += .5
 		direction += get_floor_normal() / 2
