@@ -10,16 +10,17 @@ extends CharacterBody3D
 @onready var attack_default_pos = attack_node.position
 @onready var attack_hitbox = $attack/attack_hitbox
 @onready var attack_cooldown = $Timers/attack_cooldown_timer
-@onready var enemy_mesh_material = $enemy_mesh.mesh.material
+@onready var mech_eye_model = $mech_eye_model
 
 @export var max_hp = 200.0
 
-enum EnemyState {IDLE, CHASE, ATTACk, HURT}
+enum EnemyState {IDLE, CHASE, ATTACK, HURT}
 
 var can_attack = true
 var current_state := EnemyState.IDLE
 var SPEED = 3.0
 var player_location
+var player_seen = false
 
 func _ready():
 	pass
@@ -29,7 +30,7 @@ func _process(delta):
 	match(current_state):
 		EnemyState.IDLE: _idle_state()
 		EnemyState.CHASE: _chase_state(delta)
-		EnemyState.ATTACk: _attack_state(delta)
+		EnemyState.ATTACK: _attack_state(delta)
 	
 	
 	nav_agent.target_position = player_location
@@ -63,8 +64,7 @@ func _chase_state(delta):
 
 #controls attack behavior
 func _attack_state(delta):
-	attack_node.position.z = move_toward(attack_node.position.z, attack_default_pos.z - 2, delta * 10)
-	attack_node.scale.z = move_toward(attack_node.scale.z, 5.0, delta * 15)
+	attack_node.position.z = move_toward(attack_node.position.z, attack_default_pos.z - 2, delta * 20)
 	#print("attacking")
 	for body in attack_hitbox.get_overlapping_bodies():
 		if body.is_in_group("character"):
@@ -91,13 +91,12 @@ func _physics_process(delta: float) -> void:
 			print(can_attack)
 			can_attack = false
 			print("attack_started")
-			enemy_mesh_material.albedo_color = Color(1,0,0)
-			await get_tree().create_timer(.05).timeout
-			enemy_mesh_material.albedo_color = Color(.5,0,0)
-			await get_tree().create_timer(.4).timeout
+			#enemy_mesh_material.albedo_color = Color(1,0,0)
+			#await get_tree().create_timer(.05).timeout
+			#enemy_mesh_material.albedo_color = Color(.5,0,0)
+			#await get_tree().create_timer(.4).timeout
 			
-			attack_timer.start()
-			current_state = EnemyState.ATTACk
+			mech_eye_model.attack()
 
 #stores player location
 func update_player_location(target_location):
@@ -109,9 +108,6 @@ func take_damage(amount : int):
 	if current_hp > 0: update_health_bar()
 	if current_hp <= 0:
 		self.queue_free()
-	enemy_mesh_material.albedo_color = Color(.25,0,0)
-	await get_tree().create_timer(.05).timeout
-	enemy_mesh_material.albedo_color = Color(.5,0,0)
 
 #updates health bar based on current health upon call
 func update_health_bar():
@@ -134,21 +130,26 @@ func _on_vision_timer_timeout() -> void:
 				if vision_raycast.is_colliding():
 					#print("collision detected")
 					var collider = vision_raycast.get_collider()
-					
-					if collider.name == "player" && !current_state == EnemyState.ATTACk:
-						vision_raycast.debug_shape_custom_color = Color(255, 0, 0)
-						current_state = EnemyState.CHASE
-						#print("balls")
-					elif !current_state == EnemyState.ATTACk:
+					if collider.name == "player" && !current_state == EnemyState.ATTACK:
+						if current_state == EnemyState.IDLE:
+							mech_eye_model.player_seen()
+						else:
+							player_seen = true
+							current_state = EnemyState.CHASE
+							#print("balls")
+					elif !current_state == EnemyState.ATTACK:
+						player_seen = true
 						current_state = EnemyState.CHASE
 						aggro_timer.start()
-						vision_raycast.debug_shape_custom_color = Color(0, 255, 0)
 	vision_timer.start()
 
 #moves to idle state from chase if player not visible after a few seconds
 func _on_aggro_timer_timeout() -> void:
 	if current_state == EnemyState.CHASE:
 		current_state = EnemyState.IDLE
+	if player_seen == true:
+		player_seen = false
+		mech_eye_model.player_lost()
 
 func on_hit():
 	pass
@@ -165,3 +166,13 @@ func _on_attack_timer_timeout() -> void:
 func _on_attack_cooldown_timer_timeout() -> void:
 	print("attack_enabled")
 	can_attack = true
+
+func _on_mech_eye_model_lost_finished() -> void:
+	current_state == EnemyState.IDLE
+
+func _on_mech_eye_model_seen_finished() -> void:
+	current_state = EnemyState.CHASE
+
+func _on_mech_eye_model_attack_finished() -> void:
+	attack_timer.start()
+	current_state = EnemyState.ATTACK

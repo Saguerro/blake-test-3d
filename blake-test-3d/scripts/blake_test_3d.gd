@@ -4,6 +4,7 @@ extends Node3D
 @onready var hud_timer = $HUD/TrialTimer/CurrentTime
 @onready var hud_best_time = $HUD/TrialTimer/BestTime
 @onready var deagle_instance = preload("res://weapon_manager/weapon_files/gun_1/gun-1.tres").duplicate()
+@onready var player = $player
 
 var trial_timer := 0.0
 var trial_running := false
@@ -69,3 +70,6 @@ func _on_player_catcher_body_entered(body: Node3D) -> void:
 		$player.global_position = $world_origin.global_position
 		trial_running = false
 		trial_timer = 0.0
+
+func _physics_process(delta: float) -> void:
+	get_tree().call_group("enemy", "update_player_location", player.global_transform.origin)

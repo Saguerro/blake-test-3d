@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://v0qcu0pkf55k"]
+[gd_scene load_steps=43 format=3 uid="uid://v0qcu0pkf55k"]
 
 [ext_resource type="Script" uid="uid://cwxkg4sei2rki" path="res://scripts/blake_test_3d.gd" id="1_ycpye"]
 [ext_resource type="Texture2D" uid="uid://rfe4y8xlstrw" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_32h76"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chfg8k2bn4v1b" path="res://scenes/hud.tscn" id="7_pkfag"]
 [ext_resource type="Texture2D" uid="uid://cnp01btkkm1ml" path="res://assets/textures/face.png" id="8_6yd0g"]
 [ext_resource type="PackedScene" uid="uid://bnh1ieg1ll1tl" path="res://scenes/user_interface.tscn" id="9_qihjw"]
+[ext_resource type="PackedScene" uid="uid://jxy0p8vpif8d" path="res://scenes/mechanical_eye.tscn" id="10_32h76"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
 albedo_texture = ExtResource("2_32h76")
@@ -38,10 +39,6 @@ uv1_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_gqmmt"]
 material = SubResource("StandardMaterial3D_0ld40")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2u21"]
-albedo_texture = ExtResource("2_32h76")
-uv1_triplanar = true
 
 [sub_resource type="GDScript" id="GDScript_tipki"]
 script/source = "extends RigidBody3D
@@ -120,6 +117,14 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
 size = Vector3(250, 1, 400)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_32h76"]
+vertices = PackedVector3Array(-19.5475, 3, -69.5, -19.5475, 3, -10.5, 19.4525, 3, -10.5, 19.4525, 3, -69.5, -19.5475, 0.5, -9.25, -19.5475, 0.5, 19.5, 19.4525, 0.5, 19.5, 19.4525, 0.5, -9.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2u21"]
+albedo_texture = ExtResource("2_32h76")
+uv1_triplanar = true
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bss38"]
 panorama = ExtResource("5_qj0mx")
@@ -306,18 +311,6 @@ shape = SubResource("SphereShape3D_o6xl0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="stage/start_room/movable_boxes/RigidBody3D"]
 mesh = SubResource("SphereMesh_gqmmt")
-
-[node name="floor" type="CSGBox3D" parent="stage/start_room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-use_collision = true
-size = Vector3(40, 1, 40)
-material = SubResource("StandardMaterial3D_e2u21")
-
-[node name="roof" type="CSGBox3D" parent="stage/start_room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02605, -40)
-use_collision = true
-size = Vector3(40.095, 1, 60)
-material = SubResource("StandardMaterial3D_e2u21")
 
 [node name="test_dummy" type="Node3D" parent="stage/start_room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.02612, 0.948262, -3.64489)
@@ -672,6 +665,21 @@ material = SubResource("StandardMaterial3D_trceg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34, 42)
 shape = SubResource("BoxShape3D_o6xl0")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="stage"]
+navigation_mesh = SubResource("NavigationMesh_32h76")
+
+[node name="floor" type="CSGBox3D" parent="stage/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(40, 1, 40)
+material = SubResource("StandardMaterial3D_e2u21")
+
+[node name="roof" type="CSGBox3D" parent="stage/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02605, -40)
+use_collision = true
+size = Vector3(40.095, 1, 60)
+material = SubResource("StandardMaterial3D_e2u21")
+
 [node name="env" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
@@ -695,6 +703,9 @@ texture = ExtResource("8_6yd0g")
 
 [node name="user_interface" parent="." instance=ExtResource("9_qihjw")]
 process_mode = 3
+
+[node name="mech_eye" parent="." instance=ExtResource("10_32h76")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.0207)
 
 [connection signal="body_entered" from="stage/trial_room/trial_start" to="." method="_on_trial_start_body_entered"]
 [connection signal="area_entered" from="stage/trial_room/course_final/trial_end" to="." method="_on_area_3d_area_entered"]

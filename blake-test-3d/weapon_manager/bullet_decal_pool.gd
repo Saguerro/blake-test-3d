@@ -4,7 +4,7 @@ const MAX_BULLET_DECAL = 500
 
 static var decal_pool := []
 
-static func spawn_bullet_decal(global_pos : Vector3, normal : Vector3, parent : Node3D, bullet_basis : Basis, texture_override = null):
+static func spawn_bullet_decal(global_pos : Vector3, normal : Vector3, parent : Node3D, bullet_basis : Basis, texture_override = null, object = null):
 	var decal_instance : Node3D
 	if len(decal_pool) >= MAX_BULLET_DECAL and is_instance_valid(decal_pool[0]):
 		decal_instance = decal_pool.pop_front()
@@ -25,7 +25,14 @@ static func spawn_bullet_decal(global_pos : Vector3, normal : Vector3, parent : 
 	#align to the surface
 	decal_instance.global_basis = Basis(Quaternion(decal_instance.global_basis.y, normal)) * decal_instance.global_basis
 	
-	decal_instance.get_node("GPUParticles3D").emitting = true
+	
+	if texture_override is StandardMaterial3D:
+		var gpu_particles = decal_instance.get_node("CubeParticle")
+		gpu_particles.draw_pass_1.material.albedo_color = texture_override.albedo_color
+		decal_instance.get_node("CubeParticle").emitting = true
+		decal_instance.texture_albedo = null
+	else:
+		decal_instance.get_node("GPUParticles3D").emitting = true
 	
 	if texture_override is Texture2D:
 		decal_instance.texture_albedo = texture_override

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://pug6y2shpua7"]
+[gd_scene load_steps=8 format=3 uid="uid://pug6y2shpua7"]
 
 [ext_resource type="Texture2D" uid="uid://c7pr4uroyqfrw" path="res://assets/weapons_asset_pack/weapons_asset_pack/bulletdecal.png" id="1_wm3vg"]
+[ext_resource type="Script" uid="uid://cbcj7em6n1428" path="res://weapon_manager/bullet_decal.gd" id="2_gyvdw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ryybo"]
 angle_min = 1.07288e-05
@@ -10,7 +11,7 @@ initial_velocity_min = 0.1
 initial_velocity_max = 1.0
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = 31.0
-gravity = Vector3(0, -2, 0)
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6lr6"]
 albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
@@ -21,11 +22,19 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_keces"]
 material = SubResource("StandardMaterial3D_n6lr6")
-size = Vector2(0.04, 0.025)
+size = Vector2(0.04, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wm3vg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gyvdw"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_wm3vg")
+size = Vector3(0.15, 0.15, 0.15)
 
 [node name="BulletDecal" type="Decal"]
 size = Vector3(0.086, 0.086, 0.086)
 texture_albedo = ExtResource("1_wm3vg")
+script = ExtResource("2_gyvdw")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
@@ -33,5 +42,18 @@ amount = 4
 lifetime = 0.43
 one_shot = true
 explosiveness = 0.69
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ryybo")
 draw_pass_1 = SubResource("QuadMesh_keces")
+
+[node name="CubeParticle" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 4
+lifetime = 3.0
+one_shot = true
+preprocess = 0.25
+speed_scale = 2.0
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ryybo")
+draw_pass_1 = SubResource("BoxMesh_gyvdw")

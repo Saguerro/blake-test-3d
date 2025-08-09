@@ -168,7 +168,11 @@ func fire_shot():
 		var normal = raycast.get_collision_normal()
 		var point = raycast.get_collision_point()
 		bullet_target = point
-		BulletDecalPool.spawn_bullet_decal(point, normal, object, raycast.global_basis)
+		if object.is_in_group("enemy") && object.get_node("enemy_mesh") != null:
+			var enemy_mesh_material =  object.get_node("enemy_mesh").mesh.material
+			BulletDecalPool.spawn_bullet_decal(point, normal, object, raycast.global_basis, enemy_mesh_material)
+		else:
+			BulletDecalPool.spawn_bullet_decal(point, normal, object, raycast.global_basis)
 		if !object.is_in_group("character"):
 			if object is RigidBody3D:
 				object.apply_impulse(-normal * 15.0 / object.mass, point - object.global_position)
